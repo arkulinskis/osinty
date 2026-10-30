@@ -1,0 +1,78 @@
+# Osinty
+
+Osinty is an OSINT academy styled like a private eye's office. It teaches open-source intelligence (OSINT)
+the way private investigators use it: 24 lessons with quizzes, 6 interactive fictional case files worked in a
+simulated search terminal, a private casebook with a corkboard, and a field kit of gadgets and real tools.
+For anyone curious about investigation work, from hobbyists to people heading for a PI licence.
+Built on [Anvil](https://anvil.works).
+
+- **App repo:** github.com/arkulinskis/osinty (branch `master`). Anvil pulls `master`.
+- **Live:** not published yet (will be https://osinty.anvil.app or a custom domain).
+
+## What it does
+
+**For everyone:** a noir landing page (corkboard hero, how it works, the 8 modules, a terminal teaser, the code of
+conduct, FAQ), sign-up with email and password, a feedback form ("Send feedback" in the footer and menu), and the
+Privacy & Terms page (footer link, `#legal`).
+
+**For agents (members):**
+- **The Office** (`#home`): rank shield + XP bar, streak, the daily briefing memo (a tip a day; "sign" it for +5 XP once
+  a day), next lesson, open case file, casebook count, 13 commendations (badges), the Bureau leaderboard, bulletins from HQ.
+- **Academy** (`#academy`, `#academy/<lesson>`): 8 modules x 3 lessons (mindset and law, search, people and records,
+  SOCMINT, images and video, geolocation, companies and domains, going pro). Each lesson: briefing, field steps, tool
+  links, a field note and a 3-question quiz graded on the server (2/3 passes: 30 XP, perfect +10, retakes earn the difference).
+- **Case files** (`#cases`, `#cases/<id>`): 6 fictional investigations (lost cat, romance scam, fake shop network,
+  insurance alibi, skip trace, missing-person search party). The terminal searches six sources (web, social, records,
+  WHOIS, TimeVault archive, image lab); rare clues only turn up once an earlier document revealed them (pivots).
+  Clicking `code` text or an exhibit copies it into the search box. Pin evidence, keep a notebook, answer free-text
+  questions; hints cost 8 points, wrong answers 4; XP = case XP x score, once. A debrief explains what a pro does next.
+  Restart/replay keeps XP and the best score.
+- **Casebook** (`#casebook`, `#casebook/<id>/<board|leads|checklist|report>`): private investigations with leads
+  (13 kinds, source, date, Admiralty grade A1-F6), a draggable corkboard with red strings, an intelligence-cycle and
+  ethics checklist, and a printable report (BLUF, scope, findings by kind, connections, timeline, checks).
+  "Add the training file" creates a finished sample board.
+- **Field Kit** (`#kit`, `#kit/<gadget>`): 6 gadgets (Dork Builder, Username Permutator, Email Permutator, EXIF Reader
+  that reads photos in the browser only, ID & time decoder for X/Discord snowflakes and Unix times, Admiralty Source
+  Grader) and a library of 40 real tools with tips, category filter, search and starring.
+- **Dossier** (`#profile`): rank ladder, stats, commendations, "stay in the shadows" (hide from the leaderboard),
+  agent name, theme, password reset.
+- Ranks by XP: Rookie 0, Gumshoe 120, Operative 320, Field Agent 600, Detective 950, Senior Investigator 1400,
+  Master Sleuth 1850. Promotions show a "Promoted" card; XP gains slam a stamp; new badges toast.
+
+**For admins** (`#admin`; arkulinskis@gmail.com becomes an admin on first sign-in):
+- **Feedback inbox:** New / Read / Done, private notes.
+- **Users:** search, make admin, disable an account.
+- **Training:** passes per lesson, starts/solves/average score and hints per case.
+- **Bulletins:** post notes (note / new / alert) shown in every agent's office; delete them.
+- **Demo data:** 8 demo agents with progress and solved cases (they fill the leaderboard) and 3 bulletins; remove or reload it.
+
+## Setting it up in Anvil (once)
+
+1. In the Anvil editor: **Create app → Clone from GitHub**, and paste `https://github.com/arkulinskis/osinty`.
+2. **Users** service: email + password, sign-up allowed (already set in `anvil.yaml`; check it).
+3. Open the app in the editor. If it shows a **Schema Mismatch** alert, choose **"The schema of the source code is correct"** so Anvil creates the tables.
+4. **Run** it and sign up with **arkulinskis@gmail.com** straight away (that account becomes the admin).
+5. **Publish** (Publish → public URL, or your own domain).
+
+## Working on it
+
+See `.claude/skills/osinty/SKILL.md`. In short:
+
+```
+python -I tools/check.py --ui                    # syntax, server tests, headless UI tests → ALL CHECKS PASSED
+python -I tools/preview/devserver.py 8765        # the app on in-memory data: http://localhost:8765/  (?as=ana#home, ?as=admin#admin)
+python tools/deploy.py                           # dry run (needs PyYAML, so no -I)
+python tools/deploy.py --push "Message"          # deploy: commit + push to GitHub, Anvil pulls it
+```
+
+## Project layout
+
+```
+web/            the interface: core.js/core.css (shared engine + design tokens), app.js (header, footer), pages/*.html
+client_code/    Main.py (the only Anvil form: bridge to the server, sign-in), legal.py
+server_code/    common.py, Accounts.py, Feedback.py, Admin.py, DemoData.py, legal_server.py,
+                Agents.py (XP, ranks, badges, office, kit), Academy.py, Cases.py, Casebook.py,
+                lessons_content.py + cases_content.py (the curriculum and the case files: content only)
+assets/         icon.svg + generated PNG icons, pictures (served at _/theme/<name>)
+tools/          sync_to_anvil.py (settings + table schema), deploy.py, check.py, preview/ (dev server, UI tests, screenshots), testing/
+```
