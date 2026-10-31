@@ -7,7 +7,7 @@ For anyone curious about investigation work, from hobbyists to people heading fo
 Built on [Anvil](https://anvil.works).
 
 - **App repo:** github.com/arkulinskis/osinty (branch `master`). Anvil pulls `master`.
-- **Live:** not published yet (will be https://osinty.anvil.app or a custom domain).
+- **Live:** https://osinty.anvil.app
 
 ## What it does
 
