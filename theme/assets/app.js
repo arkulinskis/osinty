@@ -438,6 +438,7 @@
         '<div class="ui-footer-links">' +
         '<a href="#landing" data-go="landing">About</a>' +
         (me ? '<a href="#kit" data-go="kit">Field Kit</a>' : '') +
+        '<a href="https://prepsto.com/#f/4jv2pps" target="_blank" rel="noopener" data-prepsto-open>Suggest an idea</a>' +
         '<button type="button" data-feedback>Send feedback</button>' +
         '<button type="button" data-lk-open="overview">Privacy &amp; Terms</button>' +
         '</div><p class="ui-footer-legal small muted">© ' + new Date().getFullYear() + ' ' + esc(UI.config.name) + '. For education. All people, companies and websites in the case files are fictional. Osinty does not license you as a private investigator.</p></div>';
