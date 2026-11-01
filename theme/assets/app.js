@@ -1820,9 +1820,11 @@
           ['Can I use it on my phone?', 'Yes. It works in any modern browser, and you can add it to your home screen.']]
   };
 
+  // the clues pinned across the board, tied to the case-file card with red string
   function heroArt() {
-    return '<div class="lp-art" role="img" aria-label="A detective\'s corkboard with photos, notes and red string">' +
-      '<svg class="str" viewBox="0 0 100 86" preserveAspectRatio="none" aria-hidden="true"><path d="M20 6 Q35 26 47 39"/><path d="M79 5 Q66 24 47 39"/><path d="M47 39 Q62 46 76 45"/><path d="M47 39 Q32 52 20 54"/></svg>' +
+    return '<div class="lp-clues" aria-hidden="true">' +
+      '<svg class="str" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M44 30 Q55 22 64 12"/><path d="M64 12 Q78 14 90 16"/><path d="M44 30 Q58 44 66 62"/>' +
+        '<path d="M66 62 Q76 62 86 60"/><path d="M64 12 Q70 26 71 40"/><path d="M71 40 Q80 52 86 60"/></svg>' +
       '<div class="it pol p1"><svg class="ph" viewBox="0 0 60 60"><rect width="60" height="60" fill="#d9c7a6"/><rect y="38" width="60" height="22" fill="#b79b74"/><circle cx="30" cy="26" r="11" fill="#e08a3c"/><path d="M21 18 24 9 28 16zM39 18 36 9 32 16z" fill="#e08a3c"/><circle cx="26" cy="25" r="1.6" fill="#2a241d"/><circle cx="34" cy="25" r="1.6" fill="#2a241d"/><ellipse cx="30" cy="46" rx="14" ry="9" fill="#e08a3c"/><ellipse cx="22" cy="53" rx="3.5" ry="2.5" fill="#fff"/></svg><span>BISCUIT?</span></div>' +
       '<div class="it pol p2"><svg class="ph" viewBox="0 0 60 60"><rect width="60" height="60" fill="#9fb6c4"/><rect y="40" width="60" height="20" fill="#e8d9b5"/><path d="M0 40 Q15 34 30 38 T60 36 V40 H0z" fill="#5f8ba0"/><path d="M44 12h4v20h-4z" fill="#f4f1ea"/><path d="M42 12l4-6 4 6z" fill="#c0392f"/><circle cx="14" cy="13" r="6" fill="#f3d27a"/></svg><span>ERICEIRA</span></div>' +
       '<div class="it pol p3"><svg class="ph" viewBox="0 0 60 60"><rect width="60" height="60" fill="#3a3330"/><rect x="8" y="10" width="44" height="30" rx="2" fill="#f1e6d0"/><path d="M12 16h24M12 21h30M12 26h18" stroke="#8f1d21" stroke-width="2"/><rect x="12" y="31" width="14" height="5" fill="#e3b55c"/><rect x="8" y="44" width="44" height="8" fill="#5a4a3e"/></svg><span>LX-447821</span></div>' +
@@ -1838,11 +1840,11 @@
       : '<a class="ui-btn primary lg" href="#auth/signup" data-go="auth/signup">' + esc(C.cta) + ' ' + UI.icon('arrow') + '</a>' +
         '<a class="ui-btn lg" href="#auth" data-go="auth">I have a badge</a>';
     view.innerHTML =
-      '<section class="lp-hero"><div class="ui-wrap"><div>' +
+      '<section class="lp-hero">' + heroArt() + '<div class="ui-wrap"><div class="lp-file">' +
         '<div class="eyebrow">' + esc(C.eyebrow) + '</div><h1>' + C.title + '</h1><p class="lp-lead">' + esc(C.lead) + '</p>' +
         '<div class="lp-cta">' + primary + '</div>' +
         '<div class="lp-proof">' + C.proof.map(function (p) { return '<span>' + UI.icon('check') + esc(p) + '</span>'; }).join('') + '</div>' +
-      '</div>' + heroArt() + '</div></section>' +
+      '</div></div></section>' +
       '<section class="lp-section" id="how"><div class="ui-wrap"><div class="lp-head"><div class="eyebrow">How it works</div><h2>From rookie to master sleuth</h2><p>Learn a technique, use it on a case, and watch one clue unlock the next.</p></div>' +
         '<div class="lp-steps">' + C.steps.map(function (s) { return '<div class="ui-card lp-step"><h3>' + esc(s[0]) + '</h3><p class="muted" style="margin:0">' + esc(s[1]) + '</p></div>'; }).join('') + '</div></div></section>' +
       '<section class="lp-section" style="padding-top:20px"><div class="ui-wrap"><div class="lp-head"><div class="eyebrow">The Academy</div><h2>Eight modules, twenty-four lessons</h2><p>Plain language, real techniques, a field note and a pop quiz in every lesson.</p></div>' +
