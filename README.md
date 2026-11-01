@@ -12,7 +12,7 @@ Built on [Anvil](https://anvil.works).
 ## What it does
 
 **For everyone:** a noir landing page (corkboard hero, how it works, the 8 modules, a terminal teaser, the code of
-conduct, FAQ), sign-up with email and password, a feedback form ("Send feedback" in the footer and menu), and the
+conduct, FAQ), sign-up with email and password, feedback through Prepsto ("Submit feedback" in the footer and menu opens its panel), and the
 Privacy & Terms page (footer link, `#legal`).
 
 **For agents (members):**
