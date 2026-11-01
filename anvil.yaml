@@ -504,16 +504,47 @@ db_schema:
     server: full
     title: Users
 metadata:
-  description: 'Learn open-source intelligence (OSINT) the way private investigators use it: lessons, realistic case files,
-    a field kit and your own casebook.'
+  description: 'Learn open-source intelligence (OSINT) the way private investigators use it: 24 lessons, realistic fictional
+    case files, a field kit of tools and your own casebook.'
   logo_img: asset:icon-512.png
   title: 'Osinty: the OSINT academy for private investigators'
 name: Osinty
 native_deps:
-  head_html: "<script src=\"_/theme/legal-kit.js?v=ed4aab1d2d\"></script>\n<meta name=\"viewport\" content=\"width=device-width,\
-    \ initial-scale=1, viewport-fit=cover\">\n<meta name=\"theme-color\" content=\"#1d1714\">\n<meta name=\"apple-mobile-web-app-capable\"\
-    \ content=\"yes\">\n<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n<link rel=\"preconnect\" href=\"\
-    https://fonts.gstatic.com\" crossorigin>\n<link href=\"https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Special+Elite&display=swap\"\
+  head_html: "<script src=\"_/theme/legal-kit.js?v=ed4aab1d2d\"></script>\n<!-- seo:start (APP_MAKER/seo: edit seo/apps/osinty.json\
+    \ and run seo.py, not here) -->\n<link rel=\"canonical\" href=\"https://osinty.anvil.app/\">\n<meta name=\"robots\" content=\"\
+    index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1\">\n<meta name=\"keywords\" content=\"OSINT\
+    \ course, learn OSINT, open source intelligence training, private investigator training, OSINT tools, SOCMINT, geolocation\
+    \ OSINT, people search techniques, become a private investigator\">\n<meta name=\"author\" content=\"Arkvital\">\n<meta\
+    \ property=\"og:type\" content=\"website\">\n<meta property=\"og:site_name\" content=\"Osinty\">\n<meta property=\"og:title\"\
+    \ content=\"Osinty: the OSINT academy for private investigators\">\n<meta property=\"og:description\" content=\"Learn\
+    \ open-source intelligence (OSINT) the way private investigators use it: 24 lessons, realistic fictional case files, a\
+    \ field kit of tools and your own casebook.\">\n<meta property=\"og:locale\" content=\"en_CA\">\n<meta property=\"og:url\"\
+    \ content=\"https://osinty.anvil.app/\">\n<meta property=\"og:image\" content=\"https://osinty.anvil.app/_/theme/og-image.png\"\
+    >\n<meta property=\"og:image:width\" content=\"1200\"><meta property=\"og:image:height\" content=\"630\">\n<meta property=\"\
+    og:image:alt\" content=\"Osinty: Learn open-source intelligence the way private investigators use it\">\n<meta name=\"\
+    twitter:card\" content=\"summary_large_image\">\n<meta name=\"twitter:title\" content=\"Osinty: the OSINT academy for\
+    \ private investigators\">\n<meta name=\"twitter:description\" content=\"Learn open-source intelligence (OSINT) the way\
+    \ private investigators use it: 24 lessons, realistic fictional case files, a field kit of tools and your own casebook.\"\
+    >\n<meta name=\"twitter:image\" content=\"https://osinty.anvil.app/_/theme/og-image.png\">\n<link rel=\"alternate\" type=\"\
+    text/plain\" title=\"Osinty for AI assistants\" href=\"https://osinty.anvil.app/llms.txt\">\n<script type=\"application/ld+json\"\
+    >{\"@context\": \"https://schema.org\", \"@graph\": [{\"@type\": \"WebApplication\", \"@id\": \"https://osinty.anvil.app/#app\"\
+    , \"name\": \"Osinty\", \"url\": \"https://osinty.anvil.app/\", \"description\": \"Learn open-source intelligence (OSINT)\
+    \ the way private investigators use it: 24 lessons, realistic fictional case files, a field kit of tools and your own\
+    \ casebook.\", \"image\": \"https://osinty.anvil.app/_/theme/og-image.png\", \"inLanguage\": \"en\", \"publisher\": {\"\
+    @id\": \"https://arkvital.com/#org\"}, \"keywords\": \"OSINT course, learn OSINT, open source intelligence training, private\
+    \ investigator training, OSINT tools, SOCMINT, geolocation OSINT, people search techniques, become a private investigator\"\
+    , \"applicationCategory\": \"EducationalApplication\", \"operatingSystem\": \"Any (web browser)\", \"browserRequirements\"\
+    : \"Requires JavaScript and a modern web browser\", \"featureList\": [\"24 lessons in 8 modules, each with a quiz\", \"\
+    Six fictional case files in a simulated search terminal\", \"A private casebook with a corkboard\", \"A field kit of gadgets\
+    \ and real OSINT tools\", \"Ranks, XP, streaks and commendations\"], \"audience\": {\"@type\": \"Audience\", \"audienceType\"\
+    : \"Hobbyists and aspiring private investigators\"}}, {\"@type\": \"WebSite\", \"@id\": \"https://osinty.anvil.app/#site\"\
+    , \"url\": \"https://osinty.anvil.app/\", \"name\": \"Osinty\", \"publisher\": {\"@id\": \"https://arkvital.com/#org\"\
+    }}, {\"@type\": \"Organization\", \"@id\": \"https://arkvital.com/#org\", \"name\": \"Arkvital\", \"url\": \"https://arkvital.com\"\
+    , \"email\": \"arkvital@outlook.com\", \"address\": {\"@type\": \"PostalAddress\", \"addressLocality\": \"Montreal\",\
+    \ \"addressRegion\": \"QC\", \"addressCountry\": \"CA\"}}]}</script>\n<!-- seo:end -->\n<meta name=\"viewport\" content=\"\
+    width=device-width, initial-scale=1, viewport-fit=cover\">\n<meta name=\"theme-color\" content=\"#1d1714\">\n<meta name=\"\
+    apple-mobile-web-app-capable\" content=\"yes\">\n<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n<link\
+    \ rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n<link href=\"https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Special+Elite&display=swap\"\
     \ rel=\"stylesheet\">\n<link id=\"ui-favicon\" rel=\"icon\" type=\"image/svg+xml\" href=\"_/theme/icon.svg?v=f18b89d1ec\"\
     >\n<link rel=\"apple-touch-icon\" href=\"_/theme/icon-180.png?v=f18b89d1ec\">\n<script>\n/* Keep our tab icon: Anvil adds\
     \ its own <link rel=\"icon\">, so drop any other icon link. */\n(function () {\n  function keep() {\n    var ours = document.getElementById('ui-favicon');\n\
