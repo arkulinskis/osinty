@@ -311,6 +311,10 @@ html.ui-dark .ui-footer { background: #0c0a0b; }
 
 
 /* ===== _osinty.html ===== */
+.os-radio { width: 40px; height: 40px; flex: none; display: inline-grid; place-items: center; border-radius: 50%; border: 1px solid var(--c-line); background: transparent; color: var(--c-muted); cursor: pointer; }
+.os-radio:hover { color: var(--c-ink); background: var(--c-surface-2); }
+.os-radio.on { color: var(--c-brand); border-color: var(--c-brand); }
+.os-radio .ui-ic { width: 18px; height: 18px; }
 .os-rank { display: inline-flex; align-items: center; gap: 8px; font: 600 .78rem/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--c-ink); }
 .os-rank .shield { width: 30px; height: 34px; flex: none; }
 .os-md p { margin: 0 0 .85em; }
