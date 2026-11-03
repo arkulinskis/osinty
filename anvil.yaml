@@ -510,7 +510,7 @@ metadata:
   title: 'Osinty: the OSINT academy for private investigators'
 name: Osinty
 native_deps:
-  head_html: "<script src=\"_/theme/legal-kit.js?v=1541f2c213\"></script>\n<!-- seo:start (APP_MAKER/seo: edit seo/apps/osinty.json\
+  head_html: "<script src=\"_/theme/legal-kit.js?v=528d5d939f\"></script>\n<!-- seo:start (APP_MAKER/seo: edit seo/apps/osinty.json\
     \ and run seo.py, not here) -->\n<link rel=\"canonical\" href=\"https://osinty.anvil.app/\">\n<meta name=\"robots\" content=\"\
     index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1\">\n<meta name=\"keywords\" content=\"OSINT\
     \ course, learn OSINT, open source intelligence training, private investigator training, OSINT tools, SOCMINT, geolocation\
@@ -553,7 +553,7 @@ native_deps:
     })();\n</script>\n\n<!-- Prepsto feedback panel: every \"Submit feedback\" link and button opens it (it is the only feedback\
     \ channel). No floating button, no cookies, nothing loads until it is opened. Codes: APP_MAKER/prepsto-links.json -->\n\
     <script src=\"https://prepsto.com/_/theme/widget.js\" data-prepsto=\"4jv2pps\" data-button=\"false\" data-label=\"Submit\
-    \ feedback\" async></script>\n<link rel=\"stylesheet\" href=\"_/theme/app.css?v=fa3cfef70d\">\n<script src=\"_/theme/app.js?v=e70676c158\"\
+    \ feedback\" async></script>\n<link rel=\"stylesheet\" href=\"_/theme/app.css?v=ba3c658a47\">\n<script src=\"_/theme/app.js?v=2fa3a17204\"\
     ></script>\n"
 package_name: Osinty
 runtime_options:
