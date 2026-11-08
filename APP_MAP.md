@@ -7,7 +7,7 @@ around them with an offset instead of whole files.
 
 **What it is:** Learn open-source intelligence (OSINT) the way private investigators use it: 24 lessons, realistic fictional case files, a field kit of tools and your own casebook.
 **Live:** https://osinty.anvil.app · **Repo:** github.com/arkulinskis/osinty · **Layout:** native Anvil Forms · **Deploy:** master
-**Guide** (workflow, design rules, product knowledge): `osinty/.claude/skills/osinty/SKILL.md`
+**Guide** (workflow, design rules, product knowledge): `.claude/skills/osinty/SKILL.md`
 
 ## How to change it
 
