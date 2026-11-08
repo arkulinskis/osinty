@@ -1,0 +1,25 @@
+<div class="gd-host">
+  <div class="ui-note gd-private"><i class="ic ic-lock"></i> <b>Private:</b> your photo is read by this page in your browser. It is never uploaded to Osinty or anyone else.</div>
+  <label class="gd-drop" anvil:dom-node="drop">
+    <i class="ic ic-camera"></i>
+    <div><b>Choose a photo</b> or drop it here</div>
+    <div class="small muted">JPEG files from phones and cameras usually carry metadata; photos saved from social networks usually don't.</div>
+    <input type="file" accept="image/jpeg,image/*" anvil:dom-node="file">
+  </label>
+  <div class="ui-card gd-exif" anvil:name="result">
+    <img alt="Your photo" anvil:dom-node="img">
+    <div class="ui-error" anvil:name="error"><span anvil:dom-node="error_text"></span></div>
+    <div class="ui-note" anvil:name="nothing">No EXIF metadata in this file. It was probably stripped (social networks, messaging apps and screenshots do that). Try the original file.</div>
+    <anvil-component type="RepeatingPanel" name="rows_panel" prop:item_template="Osinty.Items.KVRow" prop:role='["gd-rows"]'></anvil-component>
+    <div class="kv-row" anvil:name="gps">
+      <span class="k">GPS</span>
+      <span class="v"><span anvil:dom-node="gps_text"></span>
+        <span class="ui-row gd-map-links">
+          <a class="ui-btn sm" target="_blank" rel="noopener" href="https://www.openstreetmap.org" anvil:name="osm_link"><i class="ic ic-map"></i>OpenStreetMap</a>
+          <a class="ui-btn sm" target="_blank" rel="noopener" href="https://www.google.com/maps" anvil:name="gmaps_link"><i class="ic ic-pin"></i>Google Maps</a>
+        </span>
+      </span>
+    </div>
+    <p class="small muted gd-exif-note">Metadata can be wrong or edited. Treat it as one witness and corroborate it with what you see in the picture.</p>
+  </div>
+</div>

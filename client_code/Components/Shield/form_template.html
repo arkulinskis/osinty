@@ -1,0 +1,15 @@
+---
+custom_component: true
+properties:
+  - name: level
+    type: number
+    default_value: 1
+    description: The rank level, 1 (Rookie) to 7 (Master Sleuth)
+    default_binding_prop: true
+toolbox_item:
+  title: Rank shield
+  group: Osinty
+help_text: |
+  The rank badge: a coloured shield with a magnifier and one star per level (drawn by OS.shield in os-kit.js).
+---
+<div class="os-shield-host"><span class="os-shield" anvil:dom-node="box"></span></div>

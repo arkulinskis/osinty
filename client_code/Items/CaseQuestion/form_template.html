@@ -1,0 +1,17 @@
+<div class="cd-q-host">
+  <div class="cd-q" anvil:name="box">
+    <div class="qt"><span class="n" anvil:dom-node="num"></span><span anvil:dom-node="text"></span></div>
+    <div class="solved" anvil:name="solved"><i class="ic ic-check"></i><span anvil:dom-node="answer"></span></div>
+    <div anvil:name="open_part">
+      <div class="cd-q-form" anvil:name="form">
+        <anvil-component type="TextBox" name="answer_box" prop:placeholder="Your answer" prop:role='["cd-a"]'></anvil-component>
+        <anvil-component type="Button" name="submit_button" prop:text="Submit" prop:role='["btn", "btn-primary", "btn-sm"]'></anvil-component>
+      </div>
+      <div class="row2">
+        <anvil-component type="Button" name="hint_button" prop:role='["btn", "btn-ghost", "btn-sm", "ic-bulb"]'></anvil-component>
+        <span class="small muted" anvil:name="no_hints">No hints left</span>
+      </div>
+    </div>
+    <anvil-component type="RepeatingPanel" name="hints_panel" prop:item_template="Osinty.Items.HintRow"></anvil-component>
+  </div>
+</div>

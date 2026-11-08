@@ -110,7 +110,7 @@ def create_investigation(title, subject="", objective=""):
     return C.ok(investigation=_inv(inv))
 
 
-SAMPLE = {
+SAMPLE: dict = {
     "title": "Training file: the Lumenhaus network",
     "subject": "Who runs lumenhaus-deals.example?",
     "objective": "Establish the age of the shop, whether it belongs to a network of fake shops, and who might be behind it. For the client's report to police and the bank.",

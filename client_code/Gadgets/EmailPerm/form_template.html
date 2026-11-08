@@ -1,0 +1,15 @@
+<div class="gd-host">
+  <div class="gd-panel">
+    <div class="gd-form ui-card">
+      <label class="ui-field"><span>First name</span><anvil-component type="TextBox" name="first_box" prop:text="Tom"></anvil-component></label>
+      <label class="ui-field"><span>Last name</span><anvil-component type="TextBox" name="last_box" prop:text="Wills"></anvil-component></label>
+      <label class="ui-field"><span>Company domain</span><anvil-component type="TextBox" name="domain_box" prop:text="company.example"></anvil-component></label>
+      <p class="ui-hint">Find one real address at the company first (a press release, a PDF): it tells you which pattern they use. Never "test" addresses by triggering password resets.</p>
+    </div>
+    <div class="gd-out">
+      <span class="lbl">Likely formats, most common first</span>
+      <div class="gd-list" anvil:dom-node="list"></div>
+      <div class="ui-row gd-acts"><anvil-component type="Button" name="copy_button" prop:text="Copy all" prop:role='["btn", "btn-sm", "ic-copy"]'></anvil-component></div>
+    </div>
+  </div>
+</div>

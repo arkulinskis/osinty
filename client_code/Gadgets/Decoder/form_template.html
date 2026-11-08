@@ -1,0 +1,12 @@
+<div class="gd-host">
+  <div class="gd-panel">
+    <div class="gd-form ui-card">
+      <label class="ui-field"><span>A post or message ID, or a Unix timestamp</span><anvil-component type="TextBox" name="id_box" prop:text="1580661436132757504"></anvil-component></label>
+      <p class="ui-hint">X (Twitter) and Discord IDs are "snowflakes": the first bits are the creation time in milliseconds. A post's ID tells you exactly when it was made, even if the page hides it. Copy the long number from the post's URL.</p>
+      <label class="ui-field"><span>Or a date and time (UTC) to convert to Unix time</span><anvil-component type="TextBox" name="dt_box"></anvil-component></label>
+    </div>
+    <div class="gd-out" aria-live="polite">
+      <anvil-component type="RepeatingPanel" name="out_panel" prop:item_template="Osinty.Items.OutBlock"></anvil-component>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="gd-host">
+  <anvil-component type="RepeatingPanel" name="recipes_panel" prop:item_template="Osinty.Items.ChipButton" prop:role='["gd-recipes"]'></anvil-component>
+  <div class="gd-panel">
+    <div class="gd-form ui-card">
+      <label class="ui-field"><span>Exact phrase <em>"in quotes"</em></span><anvil-component type="TextBox" name="exact_box"></anvil-component></label>
+      <label class="ui-field"><span>All these words</span><anvil-component type="TextBox" name="all_box"></anvil-component></label>
+      <label class="ui-field"><span>Any of these words <em>(OR)</em></span><anvil-component type="TextBox" name="any_box"></anvil-component></label>
+      <label class="ui-field"><span>None of these <em>(-word)</em></span><anvil-component type="TextBox" name="not_box"></anvil-component></label>
+      <div class="two">
+        <label class="ui-field"><span>site:</span><anvil-component type="TextBox" name="site_box" prop:placeholder="example.org or .gov"></anvil-component></label>
+        <label class="ui-field"><span>filetype:</span><anvil-component type="DropDown" name="type_box"></anvil-component></label>
+      </div>
+      <div class="two">
+        <label class="ui-field"><span>intitle:</span><anvil-component type="TextBox" name="intitle_box"></anvil-component></label>
+        <label class="ui-field"><span>inurl:</span><anvil-component type="TextBox" name="inurl_box"></anvil-component></label>
+      </div>
+      <div class="two">
+        <label class="ui-field"><span>after: <em>(Google)</em></span><anvil-component type="TextBox" name="after_box"></anvil-component></label>
+        <label class="ui-field"><span>before:</span><anvil-component type="TextBox" name="before_box"></anvil-component></label>
+      </div>
+    </div>
+    <div class="gd-side">
+      <div class="gd-out">
+        <span class="lbl">Your query</span>
+        <div class="q" anvil:dom-node="q" aria-live="polite"></div>
+        <div class="ui-row gd-acts">
+          <anvil-component type="Button" name="copy_button" prop:text="Copy" prop:role='["btn", "btn-sm", "ic-copy"]'></anvil-component>
+          <a class="ui-btn sm" target="_blank" rel="noopener" href="https://www.google.com" anvil:name="g_link"><i class="ic ic-external"></i>Google</a>
+          <a class="ui-btn sm" target="_blank" rel="noopener" href="https://www.bing.com" anvil:name="b_link"><i class="ic ic-external"></i>Bing</a>
+          <a class="ui-btn sm" target="_blank" rel="noopener" href="https://duckduckgo.com" anvil:name="d_link"><i class="ic ic-external"></i>DuckDuckGo</a>
+        </div>
+      </div>
+      <p class="small muted gd-note">Operators differ between engines; after:/before: are Google-only. Searching is passive, but what you do with results must stay legal and proportionate.</p>
+    </div>
+  </div>
+</div>

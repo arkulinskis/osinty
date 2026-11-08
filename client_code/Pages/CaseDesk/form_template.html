@@ -1,0 +1,60 @@
+<anvil-form layout="Osinty.Layouts.Shell">
+  <anvil-block slot="content">
+    <div class="ui-wrap">
+      <div class="ui-empty" anvil:name="missing"><i class="ic ic-folder"></i><h2>That case file doesn't exist</h2><p><a href="#cases">Back to the case files</a></p></div>
+      <div anvil:name="desk">
+        <div class="cd-top">
+          <div>
+            <a class="small muted cd-back" href="#cases"><i class="ic ic-back"></i> All case files</a>
+            <h1 anvil:dom-node="title"></h1>
+            <p class="cd-file" anvil:dom-node="file"></p>
+          </div>
+          <div class="cd-score">
+            <span class="os-stamp good" anvil:name="closed_stamp">Case closed</span>
+            <div><span class="os-label" anvil:dom-node="score_label"></span><span class="num" anvil:dom-node="score"></span><span class="muted small"> / 100</span></div>
+            <anvil-component type="Button" name="reset_button" prop:text="Restart" prop:tooltip="Start this case again" prop:role='["btn", "btn-sm", "btn-ghost", "ic-refresh"]'></anvil-component>
+          </div>
+        </div>
+        <div class="cd">
+          <div class="cd-col">
+            <section class="ui-card cd-brief">
+              <div class="os-label">Briefing</div>
+              <div class="who" anvil:dom-node="client"></div>
+              <div anvil:dom-node="brief"></div>
+              <div class="os-label cd-ex-label">Exhibits <span class="cd-ex-hint">(click to search)</span></div>
+              <anvil-component type="RepeatingPanel" name="exhibits_panel" prop:item_template="Osinty.Items.Exhibit" prop:role='["cd-ex"]'></anvil-component>
+            </section>
+            <section class="ui-card cd-qs">
+              <div class="ui-row between"><h2 class="cd-h3">Case questions</h2><span class="ui-badge" anvil:dom-node="q_count"></span></div>
+              <p class="small muted cd-qs-note">Short answers. Each hint costs 8 points, each wrong answer 4.</p>
+              <anvil-component type="RepeatingPanel" name="questions_panel" prop:item_template="Osinty.Items.CaseQuestion"></anvil-component>
+              <anvil-component type="Button" name="debrief_button" prop:text="Read the debrief" prop:role='["btn", "btn-sm", "ic-award", "cd-debrief"]'></anvil-component>
+            </section>
+          </div>
+          <div class="cd-col">
+            <div class="cd-term-wrap">
+              <section class="cd-term" anvil:name="term">
+                <div class="bar"><i></i><i></i><i></i>OSINTY FIELD TERMINAL</div>
+                <div class="cd-srcs" role="group" aria-label="Source"><anvil-component type="RepeatingPanel" name="sources_panel" prop:item_template="Osinty.Items.SourceButton" prop:role='["contents"]'></anvil-component></div>
+                <div class="cd-search">
+                  <span class="pr" aria-hidden="true">&gt;</span>
+                  <anvil-component type="TextBox" name="query_box" prop:type="search" prop:role='["cd-q"]'></anvil-component>
+                  <anvil-component type="Button" name="run_button" prop:text="Run" prop:role='["btn", "ic-search", "cd-run"]'></anvil-component>
+                </div>
+                <div class="cd-log" anvil:dom-node="log"></div>
+              </section>
+              <anvil-component type="RepeatingPanel" name="results_panel" prop:item_template="Osinty.Items.DocCard" prop:role='["cd-results"]'></anvil-component>
+            </div>
+            <section class="ui-card cd-notes">
+              <details open anvil:dom-node="notes">
+                <summary><h2 class="cd-h3"><i class="ic ic-book"></i> Notebook</h2><span class="ui-badge" anvil:dom-node="notes_count"></span></summary>
+                <anvil-component type="RepeatingPanel" name="notes_panel" prop:item_template="Osinty.Items.NoteDoc" prop:role='["cd-nlist"]'></anvil-component>
+                <div class="cd-empty" anvil:name="notes_empty">Everything you find lands here, so you never lose a lead.</div>
+              </details>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </anvil-block>
+</anvil-form>

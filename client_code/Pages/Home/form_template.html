@@ -1,0 +1,80 @@
+<anvil-form layout="Osinty.Layouts.Shell">
+  <anvil-block slot="content">
+    <div class="ui-wrap of">
+      <div class="of-top">
+        <section class="of-hello">
+          <div class="date" anvil:dom-node="date"></div>
+          <h1><span anvil:dom-node="greet"></span>, Agent <em anvil:dom-node="first"></em>.</h1>
+          <div class="of-rank">
+            <anvil-component type="Osinty.Components.Shield" name="shield"></anvil-component>
+            <div class="grow">
+              <div class="nm" anvil:dom-node="rank"></div>
+              <div class="sub" anvil:dom-node="rank_sub"></div>
+              <div class="os-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="Progress to the next rank" anvil:dom-node="bar"><i anvil:dom-node="bar_fill"></i></div>
+            </div>
+          </div>
+          <div class="of-chips">
+            <span class="of-chip" anvil:dom-node="streak_chip"><i class="ic ic-flame"></i><span anvil:dom-node="streak"></span></span>
+            <span class="of-chip"><i class="ic ic-book"></i><span anvil:dom-node="lessons"></span></span>
+            <span class="of-chip"><i class="ic ic-folder"></i><span anvil:dom-node="cases"></span></span>
+            <span class="of-chip" anvil:name="place_chip"><i class="ic ic-crown"></i><span anvil:dom-node="place"></span></span>
+          </div>
+        </section>
+        <section class="of-memo">
+          <div class="os-label">Confidential · daily briefing</div>
+          <h2 anvil:dom-node="tip_title"></h2>
+          <p anvil:dom-node="tip_body"></p>
+          <anvil-component type="Button" name="sign_button" prop:text="Sign the briefing · +5 XP" prop:role='["btn", "btn-primary", "ic-edit"]'></anvil-component>
+          <div anvil:name="signed_part"><span class="os-stamp">Signed</span><p class="small of-memo-back">Back tomorrow for a fresh one.</p></div>
+        </section>
+      </div>
+
+      <div class="of-row">
+        <article class="ui-card of-card">
+          <div class="os-label"><i class="ic ic-book"></i>Continue training</div>
+          <h3 anvil:dom-node="nl_title"></h3>
+          <p anvil:dom-node="nl_text"></p>
+          <div class="foot">
+            <a class="ui-btn primary sm" href="#academy" anvil:name="nl_link"><i class="ic ic-play"></i><span anvil:dom-node="nl_go"></span></a>
+            <a class="ui-btn sm" href="#academy" anvil:name="nl_all">Open the Academy</a>
+            <span class="small muted" anvil:dom-node="nl_mod"></span>
+          </div>
+        </article>
+        <article class="ui-card of-card">
+          <div class="os-label"><i class="ic ic-folder"></i>Case files</div>
+          <h3 anvil:dom-node="nc_title"></h3>
+          <p anvil:dom-node="nc_text"></p>
+          <div class="foot">
+            <a class="ui-btn primary sm" href="#cases" anvil:name="nc_link"><i class="ic ic-terminal"></i><span anvil:dom-node="nc_go"></span></a>
+            <a class="ui-btn sm" href="#cases" anvil:name="nc_all">All case files</a>
+            <span class="ui-badge" anvil:name="nc_badge"><span anvil:dom-node="nc_badge_text"></span></span>
+          </div>
+        </article>
+        <article class="ui-card of-card">
+          <div class="os-label"><i class="ic ic-board"></i>Your casebook</div>
+          <div class="of-big" anvil:dom-node="inv_open"></div>
+          <p anvil:dom-node="inv_text"></p>
+          <div class="foot"><a class="ui-btn sm" href="#casebook"><i class="ic ic-board"></i>Open the casebook</a></div>
+        </article>
+      </div>
+
+      <div class="of-sec"><h2>Commendations</h2><span class="small muted" anvil:dom-node="badges_count"></span></div>
+      <anvil-component type="RepeatingPanel" name="badges_panel" prop:item_template="Osinty.Items.BadgeTile" prop:role='["of-badges"]'></anvil-component>
+
+      <div class="of-two">
+        <section class="ui-card">
+          <div class="of-sec"><h2>The Bureau</h2><span class="small muted" anvil:dom-node="board_total"></span></div>
+          <div role="list" class="of-board"><anvil-component type="RepeatingPanel" name="board_panel" prop:item_template="Osinty.Items.BoardRow"></anvil-component></div>
+          <p class="muted" anvil:name="board_empty">Nobody has earned XP yet. Be the first.</p>
+          <p class="small muted of-note" anvil:name="board_me"><span anvil:dom-node="board_me_text"></span></p>
+          <p class="small muted of-note">Prefer to stay in the shadows? Hide yourself in <a href="#profile">your dossier</a>.</p>
+        </section>
+        <section class="ui-card">
+          <div class="of-sec"><h2>Bulletins from HQ</h2></div>
+          <anvil-component type="RepeatingPanel" name="bulletin_panel" prop:item_template="Osinty.Items.BulletinRow" prop:role='["of-bull"]'></anvil-component>
+          <p class="muted" anvil:name="bull_empty">Quiet night. No bulletins.</p>
+        </section>
+      </div>
+    </div>
+  </anvil-block>
+</anvil-form>

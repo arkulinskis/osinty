@@ -1,0 +1,15 @@
+<anvil-form layout="Osinty.Layouts.Shell">
+  <anvil-block slot="content">
+    <div class="ui-wrap">
+      <div class="cs-intro">
+        <div>
+          <h1>The filing cabinet</h1>
+          <p class="muted cs-lead">Six fictional investigations. Search the web, social networks, records, WHOIS, archives and the image lab; pivot from one clue to the next; crack the questions. Hints and wrong guesses cost points.</p>
+        </div>
+        <span class="ui-badge good"><i class="ic ic-folder"></i><span anvil:dom-node="closed"></span></span>
+      </div>
+      <anvil-component type="RepeatingPanel" name="cases_panel" prop:item_template="Osinty.Items.CaseCard" prop:role='["cs-grid"]'></anvil-component>
+      <p class="small muted cs-foot">All people, companies, websites and records in the case files are invented. Domains end in <code>.example</code>, a name reserved for examples, so nothing here points at a real site.</p>
+    </div>
+  </anvil-block>
+</anvil-form>

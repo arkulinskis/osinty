@@ -510,51 +510,58 @@ metadata:
   title: 'Osinty: the OSINT academy for private investigators'
 name: Osinty
 native_deps:
-  head_html: "<script src=\"_/theme/legal-kit.js?v=528d5d939f\"></script>\n<!-- seo:start (APP_MAKER/seo: edit seo/apps/osinty.json\
-    \ and run seo.py, not here) -->\n<link rel=\"canonical\" href=\"https://osinty.anvil.app/\">\n<meta name=\"robots\" content=\"\
-    index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1\">\n<meta name=\"keywords\" content=\"OSINT\
-    \ course, learn OSINT, open source intelligence training, private investigator training, OSINT tools, SOCMINT, geolocation\
-    \ OSINT, people search techniques, become a private investigator\">\n<meta name=\"author\" content=\"Arkvital\">\n<meta\
-    \ property=\"og:type\" content=\"website\">\n<meta property=\"og:site_name\" content=\"Osinty\">\n<meta property=\"og:title\"\
-    \ content=\"Osinty: the OSINT academy for private investigators\">\n<meta property=\"og:description\" content=\"Learn\
-    \ open-source intelligence (OSINT) the way private investigators use it: 24 lessons, realistic fictional case files, a\
-    \ field kit of tools and your own casebook.\">\n<meta property=\"og:locale\" content=\"en_CA\">\n<meta property=\"og:url\"\
-    \ content=\"https://osinty.anvil.app/\">\n<meta property=\"og:image\" content=\"https://osinty.anvil.app/_/theme/og-image.png\"\
-    >\n<meta property=\"og:image:width\" content=\"1200\"><meta property=\"og:image:height\" content=\"630\">\n<meta property=\"\
-    og:image:alt\" content=\"Osinty: Learn open-source intelligence the way private investigators use it\">\n<meta name=\"\
-    twitter:card\" content=\"summary_large_image\">\n<meta name=\"twitter:title\" content=\"Osinty: the OSINT academy for\
-    \ private investigators\">\n<meta name=\"twitter:description\" content=\"Learn open-source intelligence (OSINT) the way\
-    \ private investigators use it: 24 lessons, realistic fictional case files, a field kit of tools and your own casebook.\"\
-    >\n<meta name=\"twitter:image\" content=\"https://osinty.anvil.app/_/theme/og-image.png\">\n<link rel=\"alternate\" type=\"\
-    text/plain\" title=\"Osinty for AI assistants\" href=\"https://osinty.anvil.app/llms.txt\">\n<script type=\"application/ld+json\"\
-    >{\"@context\": \"https://schema.org\", \"@graph\": [{\"@type\": \"WebApplication\", \"@id\": \"https://osinty.anvil.app/#app\"\
-    , \"name\": \"Osinty\", \"url\": \"https://osinty.anvil.app/\", \"description\": \"Learn open-source intelligence (OSINT)\
-    \ the way private investigators use it: 24 lessons, realistic fictional case files, a field kit of tools and your own\
-    \ casebook.\", \"image\": \"https://osinty.anvil.app/_/theme/og-image.png\", \"inLanguage\": \"en\", \"publisher\": {\"\
-    @id\": \"https://arkvital.com/#org\"}, \"keywords\": \"OSINT course, learn OSINT, open source intelligence training, private\
-    \ investigator training, OSINT tools, SOCMINT, geolocation OSINT, people search techniques, become a private investigator\"\
-    , \"applicationCategory\": \"EducationalApplication\", \"operatingSystem\": \"Any (web browser)\", \"browserRequirements\"\
-    : \"Requires JavaScript and a modern web browser\", \"featureList\": [\"24 lessons in 8 modules, each with a quiz\", \"\
-    Six fictional case files in a simulated search terminal\", \"A private casebook with a corkboard\", \"A field kit of gadgets\
-    \ and real OSINT tools\", \"Ranks, XP, streaks and commendations\"], \"audience\": {\"@type\": \"Audience\", \"audienceType\"\
-    : \"Hobbyists and aspiring private investigators\"}}, {\"@type\": \"WebSite\", \"@id\": \"https://osinty.anvil.app/#site\"\
-    , \"url\": \"https://osinty.anvil.app/\", \"name\": \"Osinty\", \"publisher\": {\"@id\": \"https://arkvital.com/#org\"\
-    }}, {\"@type\": \"Organization\", \"@id\": \"https://arkvital.com/#org\", \"name\": \"Arkvital\", \"url\": \"https://arkvital.com\"\
-    , \"email\": \"arkvital@outlook.com\", \"address\": {\"@type\": \"PostalAddress\", \"addressLocality\": \"Montreal\",\
-    \ \"addressRegion\": \"QC\", \"addressCountry\": \"CA\"}}]}</script>\n<!-- seo:end -->\n<meta name=\"viewport\" content=\"\
-    width=device-width, initial-scale=1, viewport-fit=cover\">\n<meta name=\"theme-color\" content=\"#1d1714\">\n<meta name=\"\
-    apple-mobile-web-app-capable\" content=\"yes\">\n<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n<link\
-    \ rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n<link href=\"https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Special+Elite&display=swap\"\
-    \ rel=\"stylesheet\">\n<link id=\"ui-favicon\" rel=\"icon\" type=\"image/svg+xml\" href=\"_/theme/icon.svg?v=f18b89d1ec\"\
-    >\n<link rel=\"apple-touch-icon\" href=\"_/theme/icon-180.png?v=f18b89d1ec\">\n<script>\n/* Keep our tab icon: Anvil adds\
-    \ its own <link rel=\"icon\">, so drop any other icon link. */\n(function () {\n  function keep() {\n    var ours = document.getElementById('ui-favicon');\n\
-    \    if (!ours) return;\n    document.querySelectorAll('link[rel~=\"icon\"]').forEach(function (l) { if (l !== ours) l.remove();\
-    \ });\n  }\n  keep();\n  document.addEventListener('DOMContentLoaded', keep);\n  window.addEventListener('load', keep);\n\
-    })();\n</script>\n\n<!-- Prepsto feedback panel: every \"Submit feedback\" link and button opens it (it is the only feedback\
-    \ channel). No floating button, no cookies, nothing loads until it is opened. Codes: APP_MAKER/prepsto-links.json -->\n\
-    <script src=\"https://prepsto.com/_/theme/widget.js\" data-prepsto=\"4jv2pps\" data-button=\"false\" data-label=\"Submit\
-    \ feedback\" async></script>\n<link rel=\"stylesheet\" href=\"_/theme/app.css?v=ba3c658a47\">\n<script src=\"_/theme/app.js?v=4179e7c656\"\
-    ></script>\n"
+  head_html: |
+    <script src="_/theme/legal-kit.js?v=d9200720dc"></script>
+    <!-- seo:start (APP_MAKER/seo: edit seo/apps/osinty.json and run seo.py, not here) -->
+    <link rel="canonical" href="https://osinty.anvil.app/">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="keywords" content="OSINT course, learn OSINT, open source intelligence training, private investigator training, OSINT tools, SOCMINT, geolocation OSINT, people search techniques, become a private investigator">
+    <meta name="author" content="Arkvital">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Osinty">
+    <meta property="og:title" content="Osinty: the OSINT academy for private investigators">
+    <meta property="og:description" content="Learn open-source intelligence (OSINT) the way private investigators use it: 24 lessons, realistic fictional case files, a field kit of tools and your own casebook.">
+    <meta property="og:locale" content="en_CA">
+    <meta property="og:url" content="https://osinty.anvil.app/">
+    <meta property="og:image" content="https://osinty.anvil.app/_/theme/og-image.png">
+    <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Osinty: Learn open-source intelligence the way private investigators use it">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Osinty: the OSINT academy for private investigators">
+    <meta name="twitter:description" content="Learn open-source intelligence (OSINT) the way private investigators use it: 24 lessons, realistic fictional case files, a field kit of tools and your own casebook.">
+    <meta name="twitter:image" content="https://osinty.anvil.app/_/theme/og-image.png">
+    <link rel="alternate" type="text/plain" title="Osinty for AI assistants" href="https://osinty.anvil.app/llms.txt">
+    <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "@id": "https://osinty.anvil.app/#app", "name": "Osinty", "url": "https://osinty.anvil.app/", "description": "Learn open-source intelligence (OSINT) the way private investigators use it: 24 lessons, realistic fictional case files, a field kit of tools and your own casebook.", "image": "https://osinty.anvil.app/_/theme/og-image.png", "inLanguage": "en", "publisher": {"@id": "https://arkvital.com/#org"}, "keywords": "OSINT course, learn OSINT, open source intelligence training, private investigator training, OSINT tools, SOCMINT, geolocation OSINT, people search techniques, become a private investigator", "applicationCategory": "EducationalApplication", "operatingSystem": "Any (web browser)", "browserRequirements": "Requires JavaScript and a modern web browser", "featureList": ["24 lessons in 8 modules, each with a quiz", "Six fictional case files in a simulated search terminal", "A private casebook with a corkboard", "A field kit of gadgets and real OSINT tools", "Ranks, XP, streaks and commendations"], "audience": {"@type": "Audience", "audienceType": "Hobbyists and aspiring private investigators"}}, {"@type": "WebSite", "@id": "https://osinty.anvil.app/#site", "url": "https://osinty.anvil.app/", "name": "Osinty", "publisher": {"@id": "https://arkvital.com/#org"}}, {"@type": "Organization", "@id": "https://arkvital.com/#org", "name": "Arkvital", "url": "https://arkvital.com", "email": "arkvital@outlook.com", "address": {"@type": "PostalAddress", "addressLocality": "Montreal", "addressRegion": "QC", "addressCountry": "CA"}}]}</script>
+    <!-- seo:end -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#1d1714">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Special+Elite&display=swap" rel="stylesheet">
+    <link id="ui-favicon" rel="icon" type="image/svg+xml" href="_/theme/icon.svg?v=bc15d6460a">
+    <link rel="apple-touch-icon" href="_/theme/icon-180.png?v=5b2b2e6766">
+    <script>
+    /* Keep our tab icon: Anvil adds its own <link rel="icon">, so drop any other icon link. */
+    (function () {
+      function keep() {
+        var ours = document.getElementById('ui-favicon');
+        if (!ours) return;
+        document.querySelectorAll('link[rel~="icon"]').forEach(function (l) { if (l !== ours) l.remove(); });
+      }
+      keep();
+      document.addEventListener('DOMContentLoaded', keep);
+      window.addEventListener('load', keep);
+    })();
+    </script>
+
+    <!-- Prepsto feedback panel: every "Submit feedback" link and button opens it (it is the only feedback channel). No floating button, no cookies, nothing loads until it is opened. Codes: APP_MAKER/prepsto-links.json -->
+    <script src="https://prepsto.com/_/theme/widget.js" data-prepsto="4jv2pps" data-button="false" data-label="Submit feedback" async></script>
+    <link rel="stylesheet" href="_/theme/icons.css?v=5c20f514c6">
+    <link rel="stylesheet" href="_/theme/app.css?v=b07465530b">
+    <script src="_/theme/app-kit.js?v=1f08340e2b"></script>
+    <script src="_/theme/ark-music.js?v=884c4f647c"></script>
+    <script src="_/theme/os-kit.js?v=c26a533357"></script>
 package_name: Osinty
 runtime_options:
   client_version: '3'
@@ -582,5 +589,5 @@ services:
   server_config: {}
   source: /runtime/services/google.yml
 startup:
-  module: Main
-  type: form
+  module: startup
+  type: module

@@ -1,0 +1,17 @@
+<anvil-form layout="Osinty.Layouts.Shell">
+  <anvil-block slot="content">
+    <div class="ui-wrap">
+      <div class="ac-head">
+        <div>
+          <h1>The Academy's training files</h1>
+          <p class="muted ac-lead">Eight modules, from the investigator's mindset to running a practice. Pass a lesson's quiz (2 of 3) for 30 XP; a perfect score adds 10.</p>
+        </div>
+        <div class="ac-prog">
+          <div class="os-label"><span>Progress</span><span anvil:dom-node="count"></span></div>
+          <div class="os-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="Lessons passed" anvil:dom-node="bar"><i anvil:dom-node="bar_fill"></i></div>
+        </div>
+      </div>
+      <anvil-component type="RepeatingPanel" name="modules_panel" prop:item_template="Osinty.Items.ModuleCard" prop:role='["ac-mods"]'></anvil-component>
+    </div>
+  </anvil-block>
+</anvil-form>

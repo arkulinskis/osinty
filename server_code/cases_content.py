@@ -18,7 +18,7 @@ SOURCES = {
     "image": {"label": "Image lab", "icon": "camera", "hint": "A photo file name, e.g. IMG_0001.jpg"},
 }
 
-CASES = [
+CASES: list = [
     {
         "id": "c1", "num": 1, "title": "The Cat on Maple Street", "codename": "BISCUIT", "level": "Rookie",
         "xp": 100, "module": "m3", "minutes": 10,

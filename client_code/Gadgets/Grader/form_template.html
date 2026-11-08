@@ -1,0 +1,28 @@
+<div class="gd-host">
+  <div class="gd-grade">
+    <fieldset><legend>Source reliability</legend>
+      <anvil-component type="RadioButton" name="r_A" prop:group_name="rel" prop:value="A" prop:text="A · Completely reliable"></anvil-component>
+      <anvil-component type="RadioButton" name="r_B" prop:group_name="rel" prop:value="B" prop:text="B · Usually reliable" prop:selected="true"></anvil-component>
+      <anvil-component type="RadioButton" name="r_C" prop:group_name="rel" prop:value="C" prop:text="C · Fairly reliable"></anvil-component>
+      <anvil-component type="RadioButton" name="r_D" prop:group_name="rel" prop:value="D" prop:text="D · Not usually reliable"></anvil-component>
+      <anvil-component type="RadioButton" name="r_E" prop:group_name="rel" prop:value="E" prop:text="E · Unreliable"></anvil-component>
+      <anvil-component type="RadioButton" name="r_F" prop:group_name="rel" prop:value="F" prop:text="F · Reliability cannot be judged"></anvil-component>
+    </fieldset>
+    <fieldset><legend>Information credibility</legend>
+      <anvil-component type="RadioButton" name="c_1" prop:group_name="cred" prop:value="1" prop:text="1 · Confirmed by other sources"></anvil-component>
+      <anvil-component type="RadioButton" name="c_2" prop:group_name="cred" prop:value="2" prop:text="2 · Probably true" prop:selected="true"></anvil-component>
+      <anvil-component type="RadioButton" name="c_3" prop:group_name="cred" prop:value="3" prop:text="3 · Possibly true"></anvil-component>
+      <anvil-component type="RadioButton" name="c_4" prop:group_name="cred" prop:value="4" prop:text="4 · Doubtful"></anvil-component>
+      <anvil-component type="RadioButton" name="c_5" prop:group_name="cred" prop:value="5" prop:text="5 · Improbable"></anvil-component>
+      <anvil-component type="RadioButton" name="c_6" prop:group_name="cred" prop:value="6" prop:text="6 · Truth cannot be judged"></anvil-component>
+    </fieldset>
+  </div>
+  <div class="gd-out gd-grade-out" aria-live="polite">
+    <div class="ui-row gd-grade-row">
+      <div class="gd-code" anvil:dom-node="code"></div>
+      <div><b anvil:dom-node="summary"></b><div class="gd-help" anvil:dom-node="help"></div></div>
+    </div>
+    <div class="gd-use"><span class="lbl">How to use it</span><span anvil:dom-node="advice"></span></div>
+  </div>
+  <p class="small muted gd-note">The two are graded separately on purpose: a reliable source can pass on a rumour (A4), and an unknown source can tell you something you've confirmed elsewhere (F1). Grade every lead in your casebook.</p>
+</div>

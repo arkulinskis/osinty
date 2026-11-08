@@ -1,0 +1,24 @@
+---
+custom_component: true
+properties: []
+toolbox_item:
+  title: Lead form
+  group: Osinty
+help_text: |
+  The fields of a corkboard lead: kind, value, note, source, date and the Admiralty grade. fill(kinds, lead) and data().
+---
+<div class="iv-form-host">
+  <div class="iv-form">
+    <label class="ui-field"><span>Kind</span><anvil-component type="DropDown" name="kind_box"></anvil-component></label>
+    <label class="ui-field"><span>Value</span><anvil-component type="TextBox" name="value_box" prop:placeholder="A name, @handle, address, domain..."></anvil-component></label>
+    <label class="ui-field full"><span>Note</span><anvil-component type="TextArea" name="note_box" prop:placeholder="What it is, why it matters, what to check next"></anvil-component></label>
+    <label class="ui-field"><span>Source <em>(where you found it)</em></span><anvil-component type="TextBox" name="source_box" prop:placeholder="URL or description"></anvil-component></label>
+    <label class="ui-field"><span>Date <em>(of the event, optional)</em></span><anvil-component type="TextBox" name="when_box" prop:placeholder="2026-10-07"></anvil-component></label>
+    <div class="ui-field full"><span>Admiralty grade</span>
+      <div class="iv-grade">
+        <anvil-component type="DropDown" name="rel_box"></anvil-component>
+        <anvil-component type="DropDown" name="cred_box"></anvil-component>
+      </div>
+    </div>
+  </div>
+</div>

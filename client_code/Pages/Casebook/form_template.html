@@ -1,0 +1,24 @@
+<anvil-form layout="Osinty.Layouts.Shell">
+  <anvil-block slot="content">
+    <div class="ui-wrap">
+      <div class="cb-head">
+        <h1>Your casebook</h1>
+        <div class="ui-row" anvil:name="head_actions">
+          <anvil-component type="Button" name="sample_button" prop:text="Add the training file" prop:role='["btn", "ic-book"]'></anvil-component>
+          <anvil-component type="Button" name="new_button" prop:text="New investigation" prop:role='["btn", "btn-primary", "ic-plus"]'></anvil-component>
+        </div>
+      </div>
+      <div class="cb-private"><i class="ic ic-lock"></i><div><b>Private to you.</b> Nobody else, not even other agents, can see your casebook. Investigate only with a legitimate purpose, and never put information here that you obtained unlawfully.</div></div>
+      <anvil-component type="RepeatingPanel" name="files_panel" prop:item_template="Osinty.Items.InvestigationCard" prop:role='["cb-list"]'></anvil-component>
+      <div class="ui-empty" anvil:name="empty">
+        <i class="ic ic-board"></i>
+        <h2>No investigations yet</h2>
+        <p>Open a new file for your own practice case, or add the training file to see a finished corkboard first.</p>
+        <div class="ui-row cb-empty-acts">
+          <anvil-component type="Button" name="sample_button2" prop:text="Add the training file" prop:role='["btn", "ic-book"]'></anvil-component>
+          <anvil-component type="Button" name="new_button2" prop:text="New investigation" prop:role='["btn", "btn-primary", "ic-plus"]'></anvil-component>
+        </div>
+      </div>
+    </div>
+  </anvil-block>
+</anvil-form>

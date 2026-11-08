@@ -1,0 +1,18 @@
+<div class="gd-host">
+  <div class="gd-panel">
+    <div class="gd-form ui-card">
+      <label class="ui-field"><span>First name</span><anvil-component type="TextBox" name="first_box" prop:text="Martin"></anvil-component></label>
+      <label class="ui-field"><span>Last name</span><anvil-component type="TextBox" name="last_box" prop:text="Kessler"></anvil-component></label>
+      <label class="ui-field"><span>Number or year <em>(birth year, lucky number)</em></span><anvil-component type="TextBox" name="extra_box" prop:text="1984"></anvil-component></label>
+      <p class="ui-hint">Then test them in a username checker. A hit is a lead, not proof: confirm with a shared photo, bio or location.</p>
+    </div>
+    <div class="gd-out">
+      <span class="lbl">Candidates · <span anvil:dom-node="count"></span></span>
+      <div class="gd-list" anvil:dom-node="list"></div>
+      <div class="ui-row gd-acts">
+        <anvil-component type="Button" name="copy_button" prop:text="Copy all" prop:role='["btn", "btn-sm", "ic-copy"]'></anvil-component>
+        <a class="ui-btn sm" href="https://whatsmyname.app" target="_blank" rel="noopener"><i class="ic ic-external"></i>WhatsMyName</a>
+      </div>
+    </div>
+  </div>
+</div>

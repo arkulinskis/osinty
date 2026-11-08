@@ -1,0 +1,100 @@
+<anvil-form layout="Osinty.Layouts.Shell">
+  <anvil-block slot="content">
+    <div class="ui-wrap">
+      <div class="ui-empty" anvil:name="missing"><i class="ic ic-board"></i><h2>That investigation doesn't exist, or isn't yours</h2><p><a href="#casebook">Back to the casebook</a></p></div>
+      <div anvil:name="page">
+        <div class="iv-noprint">
+          <a class="small muted" href="#casebook"><i class="ic ic-back"></i> Casebook</a>
+          <div class="iv-top">
+            <h1 anvil:dom-node="title"></h1>
+            <div class="ui-row">
+              <div class="ui-seg" role="group" aria-label="Status">
+                <button type="button" data-status="open" anvil:name="st_open" anvil:on-dom:click="self.status_click">Open</button>
+                <button type="button" data-status="cold" anvil:name="st_cold" anvil:on-dom:click="self.status_click">Cold</button>
+                <button type="button" data-status="closed" anvil:name="st_closed" anvil:on-dom:click="self.status_click">Closed</button>
+              </div>
+              <anvil-component type="Button" name="edit_button" prop:text="Edit" prop:role='["btn", "btn-sm", "ic-edit"]'></anvil-component>
+              <anvil-component type="Button" name="delete_button" prop:text="Delete investigation" prop:role='["btn", "btn-sm", "btn-ghost", "btn-danger", "btn-icon", "ic-trash"]'></anvil-component>
+            </div>
+          </div>
+          <p class="iv-sub" anvil:dom-node="sub"></p>
+          <nav class="ui-tabs" aria-label="Investigation">
+            <a href="#casebook" anvil:name="tab_board"><i class="ic ic-board"></i>Corkboard <span class="count" anvil:dom-node="c_board"></span></a>
+            <a href="#casebook" anvil:name="tab_leads"><i class="ic ic-pushpin"></i>Leads <span class="count" anvil:dom-node="c_leads"></span></a>
+            <a href="#casebook" anvil:name="tab_checklist"><i class="ic ic-check"></i>Checklist <span class="count" anvil:dom-node="c_check"></span></a>
+            <a href="#casebook" anvil:name="tab_report"><i class="ic ic-print"></i>Report</a>
+          </nav>
+        </div>
+
+        <div anvil:name="board_part">
+          <div class="cb-tools iv-noprint">
+            <anvil-component type="Button" name="add_lead_button" prop:text="Add a lead" prop:role='["btn", "btn-sm", "btn-primary", "ic-plus"]'></anvil-component>
+            <anvil-component type="Button" name="connect_button" prop:text="Tie a red string" prop:role='["btn", "btn-sm", "ic-link"]'></anvil-component>
+            <anvil-component type="Label" name="board_hint" prop:role='["cb-connect-hint"]'></anvil-component>
+          </div>
+          <div class="cb-board-wrap">
+            <anvil-component type="Osinty.Components.Corkboard" name="board"></anvil-component>
+            <div class="cb-board-empty" anvil:name="board_empty">
+              <b>An empty corkboard.</b>
+              <p class="small">Every selector you find (a name, a username, a domain, a photo) becomes a pin. Then tie red strings between the ones that connect.</p>
+              <anvil-component type="Button" name="first_lead_button" prop:text="Add the first lead" prop:role='["btn", "btn-sm", "btn-primary", "ic-plus"]'></anvil-component>
+            </div>
+          </div>
+        </div>
+
+        <div anvil:name="leads_part">
+          <div class="ui-card iv-new-lead">
+            <h2 class="iv-h3"><i class="ic ic-pushpin"></i> Pin a new lead</h2>
+            <anvil-component type="Osinty.Components.LeadForm" name="lead_form"></anvil-component>
+            <div class="ui-row end"><anvil-component type="Button" name="pin_button" prop:text="Pin this lead" prop:role='["btn", "btn-primary", "ic-pushpin"]'></anvil-component></div>
+          </div>
+          <anvil-component type="RepeatingPanel" name="leads_panel" prop:item_template="Osinty.Items.LeadRow" prop:role='["iv-leads"]'></anvil-component>
+          <div class="ui-empty" anvil:name="leads_empty"><i class="ic ic-pushpin"></i><h2>No leads yet</h2><p>Add what you know first: your selectors.</p></div>
+          <div anvil:name="links_part">
+            <h2 class="iv-h3 iv-strings-h">Red strings</h2>
+            <anvil-component type="RepeatingPanel" name="links_panel" prop:item_template="Osinty.Items.LinkRow" prop:role='["iv-leads"]'></anvil-component>
+          </div>
+        </div>
+
+        <div anvil:name="checklist_part">
+          <p class="muted iv-check-intro">Walk the intelligence cycle. A professional ticks every box before a report leaves the office.</p>
+          <anvil-component type="RepeatingPanel" name="check_panel" prop:item_template="Osinty.Items.CheckRow" prop:role='["iv-check"]'></anvil-component>
+        </div>
+
+        <div anvil:name="report_part">
+          <div class="ui-row end iv-noprint iv-print-row">
+            <anvil-component type="Button" name="print_button" prop:text="Print or save as PDF" prop:role='["btn", "btn-primary", "ic-print"]'></anvil-component>
+          </div>
+          <article class="iv-report">
+            <div class="hd"><span>Confidential · investigation report</span><span anvil:dom-node="r_date"></span></div>
+            <h2 class="iv-r-title" anvil:dom-node="r_title"></h2>
+            <span class="os-stamp" anvil:dom-node="r_stamp"></span>
+            <h3>1. Bottom line up front</h3>
+            <div class="bluf" anvil:dom-node="r_bluf"></div>
+            <h3>2. Scope</h3>
+            <div class="iv-r-table" role="table" aria-label="Scope">
+              <div class="iv-r-tr" role="row"><span role="rowheader">Subject</span><span role="cell" anvil:dom-node="r_subject"></span></div>
+              <div class="iv-r-tr" role="row"><span role="rowheader">Opened</span><span role="cell" anvil:dom-node="r_opened"></span></div>
+              <div class="iv-r-tr" role="row"><span role="rowheader">Leads</span><span role="cell" anvil:dom-node="r_leads"></span></div>
+              <div class="iv-r-tr" role="row"><span role="rowheader">Connections</span><span role="cell" anvil:dom-node="r_links"></span></div>
+            </div>
+            <h3>3. Findings</h3>
+            <anvil-component type="RepeatingPanel" name="findings_panel" prop:item_template="Osinty.Items.ReportGroup"></anvil-component>
+            <p anvil:name="no_findings">No findings recorded.</p>
+            <div anvil:name="conn_part">
+              <h3 anvil:dom-node="conn_h"></h3>
+              <div class="iv-r-table" role="table" aria-label="Connections"><anvil-component type="RepeatingPanel" name="conn_panel" prop:item_template="Osinty.Items.ReportPair"></anvil-component></div>
+            </div>
+            <div anvil:name="time_part">
+              <h3 anvil:dom-node="time_h"></h3>
+              <div class="iv-r-table" role="table" aria-label="Timeline"><anvil-component type="RepeatingPanel" name="time_panel" prop:item_template="Osinty.Items.ReportPair"></anvil-component></div>
+            </div>
+            <h3>Method and quality checks</h3>
+            <p anvil:dom-node="r_method"></p>
+            <p class="iv-r-foot">Grades use the Admiralty code: source reliability A (completely reliable) to F (cannot be judged); information credibility 1 (confirmed) to 6 (cannot be judged). Facts are recorded as found; assessments are the investigator's judgement.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </anvil-block>
+</anvil-form>

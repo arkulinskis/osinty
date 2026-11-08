@@ -1,0 +1,24 @@
+<anvil-form layout="Osinty.Layouts.Shell">
+  <anvil-block slot="content">
+    <div class="ui-wrap">
+      <div anvil:name="library_part">
+        <div class="ui-page-head"><div><h1>Field Kit: gadgets &amp; tools</h1><p class="muted">Gadgets run right here. The library lists real tools investigators use, with a tip for each. Star the ones you rely on.</p></div></div>
+        <anvil-component type="RepeatingPanel" name="gadgets_panel" prop:item_template="Osinty.Items.GadgetCard" prop:role='["kt-gadgets"]'></anvil-component>
+        <div class="kt-bar">
+          <h2>The library</h2>
+          <anvil-component type="TextBox" name="search_box" prop:type="search" prop:placeholder="Search tools" prop:role='["kt-search"]'></anvil-component>
+          <anvil-component type="CheckBox" name="saved_box" prop:text="My kit only"></anvil-component>
+        </div>
+        <div class="kt-cats" role="group" aria-label="Category"><anvil-component type="RepeatingPanel" name="cats_panel" prop:item_template="Osinty.Items.ChipButton" prop:role='["contents"]'></anvil-component></div>
+        <anvil-component type="RepeatingPanel" name="tools_panel" prop:item_template="Osinty.Items.ToolCard" prop:role='["kt-lib"]'></anvil-component>
+        <div class="ui-empty" anvil:name="tools_empty"><i class="ic ic-tool"></i><h2>Nothing here</h2><p anvil:dom-node="empty_text"></p></div>
+        <p class="small muted kt-foot">Osinty isn't affiliated with these tools. Read each one's terms, and remember: a tool being available doesn't make every use of it legal.</p>
+      </div>
+      <div class="gd" anvil:name="gadget_part">
+        <a class="small muted" href="#kit"><i class="ic ic-back"></i> Field Kit</a>
+        <div class="ui-page-head gd-head"><div><h1 anvil:dom-node="g_name"></h1><p class="muted" anvil:dom-node="g_what"></p></div></div>
+        <anvil-component type="LinearPanel" name="gadget_holder"></anvil-component>
+      </div>
+    </div>
+  </anvil-block>
+</anvil-form>

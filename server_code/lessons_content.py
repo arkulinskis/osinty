@@ -6,7 +6,7 @@ the browser before someone has answered. Text may use **bold** and `code`; the p
 that every id exists there.
 """
 
-MODULES = [
+MODULES: list = [
     {
         "id": "m1", "num": 1, "title": "The Investigator's Mindset", "tag": "Foundations", "icon": "eye",
         "blurb": "What open-source intelligence really is, the law you work inside, and how to stay invisible while you look.",

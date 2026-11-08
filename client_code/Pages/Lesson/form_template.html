@@ -1,0 +1,49 @@
+<anvil-form layout="Osinty.Layouts.Shell">
+  <anvil-block slot="content">
+    <div class="ui-wrap">
+      <div class="ls-wrap">
+        <div class="ls-crumb"><a href="#academy">Academy</a><span>/</span><span anvil:dom-node="crumb"></span></div>
+        <div class="ui-empty" anvil:name="missing"><i class="ic ic-book"></i><h2>That lesson doesn't exist</h2><p><a href="#academy">Back to the Academy</a></p></div>
+        <article class="ls-sheet" anvil:name="sheet">
+          <h1 anvil:dom-node="title"></h1>
+          <div class="ls-meta">
+            <span class="ui-badge"><i class="ic ic-clock"></i><span anvil:dom-node="minutes"></span></span>
+            <span class="ui-badge" anvil:dom-node="mod_badge"></span>
+            <span class="ui-badge good" anvil:name="best_badge"><i class="ic ic-check"></i><span anvil:dom-node="best"></span></span>
+            <span class="ui-badge brand" anvil:name="xp_badge"><i class="ic ic-bolt"></i>Up to 40 XP</span>
+          </div>
+          <div class="ls-body" anvil:dom-node="body"></div>
+          <div class="ls-box">
+            <h2 class="ls-h"><i class="ic ic-target"></i>In the field</h2>
+            <ol class="ls-steps"><anvil-component type="RepeatingPanel" name="steps_panel" prop:item_template="Osinty.Items.StepRow" prop:role='["contents"]'></anvil-component></ol>
+          </div>
+          <div class="ls-box" anvil:name="tools_box">
+            <h2 class="ls-h"><i class="ic ic-tool"></i>Tools for this</h2>
+            <anvil-component type="RepeatingPanel" name="tools_panel" prop:item_template="Osinty.Items.ToolChip" prop:role='["ls-tools"]'></anvil-component>
+          </div>
+          <div class="ls-note"><b>Field note</b><span anvil:dom-node="note"></span></div>
+
+          <section class="ls-quiz" aria-labelledby="quiz-h">
+            <h2 id="quiz-h"><i class="ic ic-edit"></i>Pop quiz</h2>
+            <p class="muted small">Two out of three to pass. The answers are checked at HQ.</p>
+            <div class="ls-result" anvil:name="result">
+              <span class="os-stamp" anvil:dom-node="stamp"></span>
+              <div><b anvil:dom-node="score"></b><div class="small muted" anvil:dom-node="score_note"></div></div>
+            </div>
+            <anvil-component type="RepeatingPanel" name="quiz_panel" prop:item_template="Osinty.Items.QuizQuestion"></anvil-component>
+            <div class="ui-row">
+              <anvil-component type="Button" name="hand_in_button" prop:text="Hand in" prop:role='["btn", "btn-primary", "ic-check"]'></anvil-component>
+              <anvil-component type="Button" name="retry_button" prop:text="Try again" prop:visible="false" prop:role='["btn", "btn-ghost", "ic-refresh"]'></anvil-component>
+            </div>
+          </section>
+        </article>
+        <div class="ls-nav" anvil:name="nav">
+          <a class="ui-btn" href="#academy" anvil:name="prev_link"><i class="ic ic-back"></i>Previous lesson</a>
+          <span anvil:name="prev_gap"></span>
+          <a class="ui-btn" href="#academy" anvil:name="next_link">Next lesson <i class="ic ic-arrow"></i></a>
+          <a class="ui-btn" href="#cases" anvil:name="cases_link">On to the case files <i class="ic ic-arrow"></i></a>
+        </div>
+      </div>
+    </div>
+  </anvil-block>
+</anvil-form>
