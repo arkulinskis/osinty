@@ -511,7 +511,7 @@ metadata:
 name: Osinty
 native_deps:
   head_html: |
-    <script src="_/theme/legal-kit.js?v=d9200720dc"></script>
+    <script src="_/theme/legal-kit.js?v=250312dcfd"></script>
     <!-- seo:start (APP_MAKER/seo: edit seo/apps/osinty.json and run seo.py, not here) -->
     <link rel="canonical" href="https://osinty.anvil.app/">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -560,7 +560,7 @@ native_deps:
     <link rel="stylesheet" href="_/theme/icons.css?v=5c20f514c6">
     <link rel="stylesheet" href="_/theme/app.css?v=b07465530b">
     <script src="_/theme/app-kit.js?v=1f08340e2b"></script>
-    <script src="_/theme/ark-music.js?v=884c4f647c"></script>
+    <script src="_/theme/ark-music.js?v=39180862e8"></script>
     <script src="_/theme/os-kit.js?v=c26a533357"></script>
 package_name: Osinty
 runtime_options:
