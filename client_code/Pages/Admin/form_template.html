@@ -51,6 +51,11 @@
       </div>
 
       <div anvil:name="training_part">
+        <section class="ui-card ad-links">
+          <div class="ui-row between"><h2 class="ad-h3">Field Kit links</h2><anvil-component type="Button" name="check_tools_button" prop:text="Check tool links" prop:role='["btn", "btn-sm", "ic-refresh"]'></anvil-component></div>
+          <p class="muted small" anvil:dom-node="links_summary"></p>
+          <anvil-component type="RepeatingPanel" name="links_panel" prop:item_template="Osinty.Items.KVRow" prop:role='["ad-links-list"]'></anvil-component>
+        </section>
         <h2 class="ad-h3">Case files</h2>
         <div class="ad-table ad-tr-head ad-tr-cases"><b>Case</b><b>Started</b><b>Closed</b><b>Avg score</b><b class="hide-sm">Avg hints</b></div>
         <anvil-component type="RepeatingPanel" name="tr_cases_panel" prop:item_template="Osinty.Items.TrainingCaseRow"></anvil-component>

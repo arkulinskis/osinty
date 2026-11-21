@@ -3,6 +3,11 @@
     <div class="ui-wrap">
       <div class="ui-empty" anvil:name="missing"><i class="ic ic-folder"></i><h2>That case file doesn't exist</h2><p><a href="#cases">Back to the case files</a></p></div>
       <div anvil:name="desk">
+        <div class="cd-guest" anvil:name="guest_bar">
+          <span class="os-stamp warn">Training run: not saved</span>
+          <p>No account needed for case file #1. Solve it here, then join the Bureau to bank the XP and open five more cases.</p>
+          <anvil-component type="Button" name="join_button" prop:text="Join the Bureau" prop:role='["btn", "btn-sm", "btn-primary"]'></anvil-component>
+        </div>
         <div class="cd-top">
           <div>
             <a class="small muted cd-back" href="#cases"><i class="ic ic-back"></i> All case files</a>

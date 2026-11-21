@@ -6,6 +6,7 @@ Links in templates are plain <a href="#home">; code calls router.go("cases", cas
     PAGES[name] = (who may open it, browser-tab title)   who: None = anyone, "guest" = signed out only, "user", "admin"
     NAV = the main menu (header; the phone tab bar shows the first four + Dossier): (page, label, icon).
 New page: add it to PAGES, to _form() and (if it belongs in the menu) to NAV.
+OPEN_ARGS: member pages that open for anyone at one address (case file #1 = the guest training run).
 """
 import anvil
 import anvil.js
@@ -21,12 +22,14 @@ PAGES = {
     "cases": ("user", "Case files"),
     "casebook": ("user", "Casebook"),
     "kit": ("user", "Field Kit"),
+    "chair": (None, "The client chair"),
     "profile": ("user", "Your dossier"),
     "admin": ("admin", "Admin"),
 }
 NAV = [("home", "Office", "hat"), ("academy", "Academy", "book"), ("cases", "Cases", "folder"),
        ("casebook", "Casebook", "board"), ("kit", "Kit", "tool")]
 APP_NAME = "Osinty"
+OPEN_ARGS = {("cases", "c1")}
 _r: dict = {"after": "", "listening": False, "page": None, "form": None}
 
 
@@ -66,6 +69,9 @@ def _form(name, args):
     if name == "profile":
         from .Pages.Profile import Profile
         return Profile
+    if name == "chair":
+        from .Pages.Chair import Chair
+        return Chair
     from .Pages.Admin import Admin
     return Admin
 
@@ -103,6 +109,8 @@ def show():
         if (window.location.hash or "#") != "#":
             replace(name)
     who = PAGES[name][0]
+    if tuple([name] + list(args)) in OPEN_ARGS:
+        who = None
     if who == "guest" and state.me():
         name, args = "home", []
         replace(name)
@@ -144,13 +152,34 @@ def replace(name, *args):
 
 
 def after_sign_in():
-    """Where to go once someone signs in: the page they were heading for, or home."""
+    """Where to go once someone signs in: the page they were heading for, or home. A guest's training run of case
+    file #1 (kept in this browser) is banked first, so the case shows as solved when they land on it."""
+    _claim_trial()
     target = _r["after"]
     _r["after"] = ""
     if target and target != window.location.hash:
         window.location.hash = target
     else:
         go("home")
+
+
+def _claim_trial():
+    from .Pages.CaseDesk import trial_get, trial_set
+    t = trial_get()
+    if not (t.get("found") or t.get("answers")):
+        return
+    try:
+        r = anvil.server.call("claim_trial", t)
+    except Exception:
+        return  # keep the run in the browser and try again at the next sign-in
+    trial_set({})
+    if r and r.get("saved"):
+        from . import os_kit
+        if r.get("xp_gained"):
+            os_kit.celebrate(r)
+            state.toast("Training run banked: case file #1 closed, +%s XP." % r["xp_gained"], "ok")
+        else:
+            state.toast("Training run saved to case file #1.", "ok")
 
 
 def remember_after(target):

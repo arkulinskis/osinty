@@ -37,6 +37,7 @@ class Lesson(LessonTemplate):
         self.tools_box.visible = bool(L["tools"])
         self.tools_panel.items = [t for t in L["tools"]]
         n["note"].innerHTML = os_kit.md(L["field_note"])
+        n["chair_link"].style.display = "" if self.lesson_id == "m1l2" else "none"
         self.result.visible = False
         self.quiz_panel.items = [{"i": i, "q": q["q"], "options": q["options"]} for i, q in enumerate(L["quiz"])]
         self.prev_link.visible = bool(d.get("prev"))

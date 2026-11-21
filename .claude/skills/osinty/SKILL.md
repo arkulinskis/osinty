@@ -12,7 +12,7 @@ calls what, so changes don't need a re-read of the code. Regenerate it after eve
 **What it is:** an app that teaches open-source intelligence the way private investigators use it. Agents (members)
 train in the Academy (24 lessons, server-graded quizzes), work 6 fictional case files in a simulated search terminal,
 keep private investigations in a Casebook (corkboard, Admiralty grades, printable report) and use a Field Kit
-(6 in-browser gadgets + 40 real tools). XP, 7 ranks, streaks, 13 badges and a leaderboard ("the Bureau"). Admins see
+(6 in-browser gadgets + 41 real tools). XP, 7 ranks, streaks, 13 badges and a leaderboard ("the Bureau"). Admins see
 training stats and post bulletins.
 
 **Where it lives:**
@@ -139,6 +139,18 @@ tools/                     check.py, assets.py, build_icons.py, make_icons.py, u
 - **Restyle:** tokens at the top of app.css (light and dark blocks), fonts in head_html, the spinner in theme.css
   (`python -I APP_MAKER/tools/loaders.py apply osinty <preset>`), `LEGAL_THEME` in startup.py.
 - **Icon:** edit theme/assets/icon.svg, `python -I tools/make_icons.py`, then `python tools/assets.py`.
+
+- **Guest training run (case #1):** `router.OPEN_ARGS` opens `#cases/c1` to anyone. CaseDesk guest mode keeps the
+  run in `UI.store` key `os-trial` (JSON string) and calls the stateless `try_case/try_search/try_hint/try_answer`
+  (Cases.py), which re-check the run (`clean_trial`) and send it back; pins stay client-side. `router.after_sign_in`
+  calls `claim_trial` (XP once, answers re-checked). To open another case to guests, add it to OPEN_ARGS and make
+  TRIAL_CASE a set.
+- **Client chair:** content in `server_code/chair_content.py` (append clients, never renumber ids: the daily deal and
+  vote counts use them). `Chair.deal(day)` = seeded shuffle per 10-day cycle; day #1 = 2026-11-20 (UTC). Tables
+  `chair_stats` / `chair_runs` are read with try/except, so the page works before the schema is accepted.
+- **Kit check-up:** every tool in `os_data.TOOLS` has `checked` (YYYY-MM) and optional `status` + `note`. Re-check the
+  list by hand every few months and bump `checked`; Admin -> Training -> Check tool links stores pings in app_settings
+  `tool_check` (urllib in threads, 24 s deadline).
 
 ## Gotchas
 

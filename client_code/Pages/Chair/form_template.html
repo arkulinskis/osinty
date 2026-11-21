@@ -1,0 +1,45 @@
+<anvil-form layout="Osinty.Layouts.Shell">
+  <anvil-block slot="content">
+    <div class="ui-wrap">
+      <div class="ch">
+        <div class="ch-head">
+          <div>
+            <h1>The client chair</h1>
+            <p class="ch-num" anvil:dom-node="num"></p>
+          </div>
+          <div class="ch-streak" anvil:name="streak_part"><i class="ic ic-flame"></i><span anvil:dom-node="streak"></span></div>
+        </div>
+        <p class="ch-intro">Three fictional clients walk in. Each one wants an investigator. Weigh the <b>purpose</b> and the <b>proportion</b>, then rule: take the job, take it with conditions, or show them the door. HQ gives its ruling once you hand in.</p>
+
+        <div class="ui-empty" anvil:name="error_box"><i class="ic ic-briefcase"></i><h2>The waiting room is locked</h2><p anvil:dom-node="error_text">We couldn't reach HQ.</p><anvil-component type="Button" name="retry_button" prop:text="Try again" prop:role='["btn", "ic-refresh"]'></anvil-component></div>
+
+        <anvil-component type="RepeatingPanel" name="clients_panel" prop:item_template="Osinty.Items.ChairClient" prop:role='["ch-list"]'></anvil-component>
+
+        <div class="ch-hand" anvil:name="hand_part">
+          <span class="ch-progress" anvil:dom-node="progress"></span>
+          <anvil-component type="Button" name="hand_in_button" prop:text="Hand in my rulings" prop:role='["btn", "btn-primary", "ic-check"]'></anvil-component>
+        </div>
+
+        <section class="ui-card ch-result" anvil:name="result_part" aria-live="polite">
+          <span class="os-stamp ch-score" anvil:dom-node="score_stamp"></span>
+          <div class="ch-result-text">
+            <h2 class="ch-h" anvil:dom-node="result_title"></h2>
+            <p anvil:dom-node="result_text"></p>
+            <div class="ch-share">
+              <code anvil:dom-node="share_text"></code>
+              <anvil-component type="Button" name="copy_button" prop:text="Copy result" prop:role='["btn", "btn-sm", "ic-copy"]'></anvil-component>
+            </div>
+            <div class="ch-join" anvil:name="join_part">
+              <p>Join the Bureau to bank +10 XP every day you sit in the chair, and keep your streak on your record.</p>
+              <a class="ui-btn primary sm" href="#auth/signup">Join the Bureau, it's free</a>
+              <a class="ui-btn sm" href="#cases/c1">Try case file #1</a>
+            </div>
+            <p class="small muted" anvil:dom-node="next_text">New clients tomorrow.</p>
+          </div>
+        </section>
+
+        <p class="small muted ch-foot">Every client is invented. The rulings follow Osinty's code of conduct and the ethics in <a href="#academy/m1l2">lesson 1.2</a>. Laws differ from place to place: this is training, not legal advice.</p>
+      </div>
+    </div>
+  </anvil-block>
+</anvil-form>

@@ -155,6 +155,14 @@ def leaderboard(me, limit=10):
     return {"rows": rows, "my_place": my_place, "total": len(people)}
 
 
+def _chair_card(me):
+    from . import Chair  # Chair imports this module
+    try:
+        return Chair.office_card(me)
+    except Exception:
+        return None
+
+
 def _tip_of_day():
     t = today()
     i = t.timetuple().tm_yday % len(LC.TIPS)
@@ -193,6 +201,7 @@ def get_office():
         "active_cases": active, "next_case": next_case, "cases_solved": solved, "cases_total": len(CC.CASES),
         "investigations": {"open": len([i for i in invs if i["status"] == "open"]), "total": len(invs)},
         "badges": badge_list(got), "board": leaderboard(me),
+        "chair": _chair_card(me),
         "bulletins": [{"id": b.get_id(), "title": b["title"], "body": b["body"], "kind": b["kind"] or "note", "created": C.iso(b["created"])}
                       for b in bulletins],
     }
@@ -240,7 +249,8 @@ TOOL_ID = re.compile(r"^[a-z0-9]{2,24}$")
 @anvil.server.callable(require_user=True)
 def get_kit():
     me = C.require_user()
-    return {"saved": list(me["kit"] or [])}
+    check = C.get_setting("tool_check") or {}
+    return {"saved": list(me["kit"] or []), "check": {"when": check.get("when"), "results": check.get("results") or {}}}
 
 
 @anvil.server.callable(require_user=True)

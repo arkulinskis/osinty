@@ -213,7 +213,7 @@ MODULES: list = [
                 "summary": "People reuse handles. One username can unlock a dozen accounts.",
                 "body": [
                     "People are creatures of habit: the handle they chose at fifteen often follows them to every new platform. A **pivot** is using one selector (a username) to find new selectors (other accounts, a real name, a photo, a city).",
-                    "Username checkers such as **WhatsMyName** and the open-source tool **Sherlock** test a handle on hundreds of sites at once. Then search the handle in quotes on search engines: forum posts, old gaming profiles and comment sections rarely show up in checkers.",
+                    "Username checkers such as the open-source tools **Maigret** and **Sherlock** test a handle on hundreds of sites at once. (**WhatsMyName** still runs, but its creator archived it in November 2026, so its site checks slowly go stale.) Then search the handle in quotes on search engines: forum posts, old gaming profiles and comment sections rarely show up in checkers.",
                     "Try **variants**: `mkess84`, `m.kess84`, `mkessler84`, `mkess_84`. Birth years, favourite numbers and initials repeat. The Field Kit's Username Permutator generates variants for you.",
                     "Beware false positives. A common handle like `jsmith` exists on every site and belongs to many people. Confirm a match with something shared between accounts: the same profile photo, bio wording, location, friends or writing style."
                 ],
@@ -223,7 +223,7 @@ MODULES: list = [
                     "Generate and test variants (years, separators, initials).",
                     "Confirm each hit with at least one shared detail before you trust it."
                 ],
-                "tools": ["whatsmyname", "sherlock", "permutator"],
+                "tools": ["maigret", "sherlock", "whatsmyname", "permutator"],
                 "field_note": "A rare username is a strong selector. A common one is a trap.",
                 "quiz": [
                     {"q": "You found the username 'mkess84' on a forum. What's the best next step?",

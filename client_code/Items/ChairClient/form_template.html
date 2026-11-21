@@ -1,0 +1,26 @@
+<div class="ch-card-host">
+  <article class="ch-card" anvil:dom-node="card">
+    <div class="ch-card-top">
+      <span class="ch-tag" anvil:dom-node="n"></span>
+      <span class="os-stamp ch-vstamp" anvil:dom-node="verdict_stamp"></span>
+    </div>
+    <h2 class="ch-who" anvil:dom-node="who"></h2>
+    <blockquote class="ch-ask" anvil:dom-node="ask"></blockquote>
+    <ul class="ch-facts"><anvil-component type="RepeatingPanel" name="facts_panel" prop:item_template="Osinty.Items.StepRow" prop:role='["contents"]'></anvil-component></ul>
+    <div class="ch-picks" role="group" anvil:dom-node="picks">
+      <button type="button" class="ch-pick take" anvil:dom-node="take" anvil:on-dom:click="self.take_click"><i class="ic ic-check"></i>Take the job</button>
+      <button type="button" class="ch-pick cond" anvil:dom-node="cond" anvil:on-dom:click="self.cond_click"><i class="ic ic-sliders"></i>With conditions</button>
+      <button type="button" class="ch-pick decline" anvil:dom-node="decline" anvil:on-dom:click="self.decline_click"><i class="ic ic-x"></i>Show them the door</button>
+    </div>
+    <div class="ch-ruling" anvil:dom-node="ruling">
+      <p class="ch-verdict"><b anvil:dom-node="verdict"></b><span anvil:dom-node="yours"></span></p>
+      <p class="ch-cond" anvil:dom-node="condition"></p>
+      <p class="ch-why" anvil:dom-node="why"></p>
+      <div class="ch-crowd" anvil:dom-node="crowd">
+        <div class="ch-bars" aria-hidden="true"><i class="take" anvil:dom-node="bar_take"></i><i class="cond" anvil:dom-node="bar_cond"></i><i class="decline" anvil:dom-node="bar_decline"></i></div>
+        <span anvil:dom-node="crowd_text"></span>
+      </div>
+      <a class="ch-lesson" href="#academy" anvil:dom-node="lesson"><i class="ic ic-book"></i><span anvil:dom-node="lesson_text"></span></a>
+    </div>
+  </article>
+</div>

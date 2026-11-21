@@ -1,7 +1,7 @@
 from anvil import *
 
 from ._anvil_designer import AdminTemplate
-from ... import state
+from ... import os_data, state
 
 TABS = ["overview", "feedback", "users", "training", "bulletins", "demo"]
 
@@ -93,6 +93,40 @@ class Admin(AdminTemplate):
         top = max([l["passes"] for l in d["lessons"]] + [1])
         self.tr_cases_panel.items = d["cases"]
         self.tr_lessons_panel.items = [dict(l, top=top) for l in d["lessons"]]
+        self._draw_links(state.call("admin_tool_check"))
+
+    def _draw_links(self, r):
+        """The last Field Kit link check: a summary, then every tool that didn't answer cleanly."""
+        if not r:
+            return
+        if not r.get("when"):
+            self.dom_nodes["links_summary"].textContent = ("Never checked. Press the button to ping all %d tools "
+                                                           "(takes up to half a minute)." % len(os_data.TOOLS))
+            self.links_panel.items = []
+            return
+        self.dom_nodes["links_summary"].textContent = "Last check %s: %d answered, %d refuse robots (alive), %d down." % (
+            state.short_date(r["when"]), r["n_ok"], r["n_blocked"], r["n_down"])
+        rows = []
+        for tid, res in sorted(r["results"].items()):
+            if res.get("state") == "ok":
+                continue
+            tool = os_data.tool_by_id(tid) or {"name": tid}
+            what = "timed out" if res.get("timeout") else ("HTTP %s" % res["code"] if res.get("code") else "no answer")
+            rows.append({"k": tool["name"], "v": ("Down · " if res.get("state") == "down" else "Refuses robots · ") + what})
+        self.links_panel.items = rows
+
+    @handle("check_tools_button", "click")
+    def check_tools_button_click(self, **event_args):
+        self.check_tools_button.enabled = False
+        self.check_tools_button.text = "Checking..."
+        try:
+            r = state.call("admin_check_tools")
+        finally:
+            self.check_tools_button.enabled = True
+            self.check_tools_button.text = "Check tool links"
+        if r:
+            self._draw_links(r)
+            state.toast("Checked %d tools: %d down." % (r["total"], r["n_down"]), "error" if r["n_down"] else "ok")
 
     # ---- bulletins
     def _bulletins(self):

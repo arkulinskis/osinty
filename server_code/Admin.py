@@ -127,3 +127,78 @@ def delete_bulletin(bulletin_id):
     if b is not None:
         b.delete()
     return C.ok()
+
+
+# ------------------------------------------------------------------------------------------- Field Kit link check
+LINK_TIMEOUT = 6
+LINK_DEADLINE = 24  # seconds for the whole check (a server call must finish well inside Anvil's limit)
+LINK_UA = "Mozilla/5.0 (compatible; OsintyLinkCheck/1.0)"
+
+
+def _ping(url):
+    """'ok' (answers), 'blocked' (answers but refuses robots: 401/403/429, still alive) or 'down', with the code."""
+    import urllib.error
+    import urllib.request
+    last = 0
+    for method in ("HEAD", "GET"):
+        try:
+            req = urllib.request.Request(url, method=method, headers={"User-Agent": LINK_UA, "Accept": "text/html,*/*"})
+            with urllib.request.urlopen(req, timeout=LINK_TIMEOUT) as resp:
+                return {"state": "ok", "code": int(resp.status)}
+        except urllib.error.HTTPError as e:
+            last = int(e.code)
+            if e.code in (401, 403, 429) and method == "GET":
+                return {"state": "blocked", "code": last}
+            if e.code in (404, 410):
+                break
+        except Exception:
+            last = 0
+    return {"state": "down", "code": last}
+
+
+def check_links(tools):
+    """Ping every tool's url in parallel; tools = [(id, url)]. Unfinished ones count as down ('timeout')."""
+    import concurrent.futures as cf
+    results = {}
+    pool = cf.ThreadPoolExecutor(max_workers=24)
+    try:
+        futures = {pool.submit(_ping, url): tid for tid, url in tools}
+        try:
+            for f in cf.as_completed(futures, timeout=LINK_DEADLINE):
+                try:
+                    results[futures[f]] = f.result()
+                except Exception:
+                    results[futures[f]] = {"state": "down", "code": 0}
+        except cf.TimeoutError:
+            pass
+    finally:
+        pool.shutdown(wait=False)
+    for tid, _url in tools:
+        results.setdefault(tid, {"state": "down", "code": 0, "timeout": True})
+    return results
+
+
+@anvil.server.callable(require_user=True)
+def admin_check_tools():
+    """Admin -> Training -> "Check tool links": HEAD (then GET) every Field Kit tool, stored for the kit's cards."""
+    C.require_admin()
+    from . import os_data  # the tool list lives with the client (client and server share one package)
+    tools = [(t["id"], t["url"]) for t in os_data.TOOLS if t.get("url")]
+    results = check_links(tools)
+    stamp = C.iso(C.now())
+    C.set_setting("tool_check", {"when": stamp, "results": results})
+    return C.ok(when=stamp, total=len(tools), results=results, **_link_summary(results))
+
+
+@anvil.server.callable(require_user=True)
+def admin_tool_check():
+    """The last link check, for the Training tab."""
+    C.require_admin()
+    check = C.get_setting("tool_check") or {}
+    results = check.get("results") or {}
+    return C.ok(when=check.get("when"), total=len(results), results=results, **_link_summary(results))
+
+
+def _link_summary(results):
+    states = [r.get("state") for r in results.values()]
+    return {"n_ok": states.count("ok"), "n_blocked": states.count("blocked"), "n_down": states.count("down")}

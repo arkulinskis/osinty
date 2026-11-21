@@ -82,6 +82,13 @@
     await open('#auth', /Welcome back/);
     await open('#auth/signup', /Create your account/);
     await open('#cases', /Sign in/, () => location.hash === '#cases' && $('.au-card'));  // members only: asks to sign in
+    await open('#cases/c1', /Training run/);  // case file #1 is open to guests (the training run)
+    type($('.cd-search input'), 'maple found cat');
+    button(/Run/, '.cd-search').click();
+    await until(() => /result|no results/.test(($('.cd-log') || {}).textContent || ''), 'a guest search reply', 20000);
+    check('#cases/c1 (guest search)', /Notebook/);
+    await open('#chair', /client chair/);
+    await open('#cases/c2', /Sign in/, () => location.hash === '#cases/c2' && $('.au-card'));  // other cases still need an account
 
     // ---- a new agent
     const ok = await signUp('Smoke Tester', 'smoke' + Date.now() + '@example.com', 'Os-' + Math.random().toString(36).slice(2) + '-Kq7');
@@ -103,7 +110,8 @@
     const inv = location.hash.split('/')[1];
     check('#casebook/<training file>', /Corkboard/);
     for (const t of ['leads', 'checklist', 'report']) await open('#casebook/' + inv + '/' + t, /Corkboard/);
-    await open('#kit', /The library/);
+    await open('#chair', /client chair/);
+    await open('#kit', /Checked/);
     for (const g of ['dorkbuilder', 'permutator', 'emailperm', 'exifreader', 'snowflake', 'grader']) await open('#kit/' + g, /Field Kit/);
     await open('#profile', /Service record/);
     await open('#landing', /Back to the office/);

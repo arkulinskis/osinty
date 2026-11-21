@@ -44,7 +44,10 @@ class Kit(KitTemplate):
             return
         self.gadget_part.visible = False
         self.cat = state.store_get("kit.cat", "all")
-        self.saved: list = list(anvil.server.call("get_kit")["saved"])
+        kit = anvil.server.call("get_kit")
+        self.saved: list = list(kit["saved"])
+        self.links: dict = dict((kit.get("check") or {}).get("results") or {})
+        self.link_when = (kit.get("check") or {}).get("when") or ""
         state.set_control_attr(self.search_box, "aria-label", "Search tools")
         self.gadgets_panel.items = os_data.GADGETS
         self._draw_cats()
@@ -70,9 +73,14 @@ class Kit(KitTemplate):
         tools = [t for t in os_data.TOOLS
                  if (self.cat == "all" or t["cat"] == self.cat) and (not mine or t["id"] in self.saved)
                  and (not needle or needle in (t["name"] + " " + t["what"] + " " + t["tip"]).lower())]
-        self.tools_panel.items = [dict(t, saved=t["id"] in self.saved, host=self) for t in tools]
+        self.tools_panel.items = [dict(t, saved=t["id"] in self.saved, host=self, link=self._link(t["id"])) for t in tools]
         self.tools_empty.visible = not tools
         self.dom_nodes["empty_text"].textContent = "Star tools to build your kit." if mine else "No tool matches that search."
+
+    def _link(self, tool_id):
+        """The last admin link check for one tool, or None."""
+        r = self.links.get(tool_id)
+        return dict(r, when=self.link_when) if r else None
 
     @handle("search_box", "change")
     def search_box_change(self, **event_args):

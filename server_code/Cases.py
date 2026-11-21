@@ -237,3 +237,167 @@ def case_reset(case_id):
     r.update(found=[], pinned=[], answers={}, hints={}, wrong=0, searches=0, updated=C.now(),
              status="replay" if r["xp"] else "open")
     return C.ok(state=_state(case, r))
+
+
+# ------------------------------------------------------------------------------------------- the training run (guests)
+# Case file #1 is open to everyone. A guest's run lives in their browser (the "trial" dict), and every call checks it
+# again here: only real document ids, pins of found documents, answers that are right, hint counts within range.
+# Nothing is saved for a guest. claim_trial() turns the run into a real case_runs row once they have an account.
+TRIAL_CASE = "c1"
+MAX_TRIAL_WRONG = 50
+
+
+def _trial_case():
+    return CC.case_by_id(TRIAL_CASE)
+
+
+def _as_list(v):
+    return list(v) if isinstance(v, (list, tuple)) else []
+
+
+def _as_dict(v):
+    return dict(v) if isinstance(v, dict) else {}
+
+
+def _as_int(v, low, high):
+    try:
+        return max(low, min(high, int(v)))
+    except Exception:
+        return low
+
+
+def clean_trial(case, trial):
+    """A guest's run, made safe: {found, pinned, answers, hints, wrong, searches}."""
+    t = _as_dict(trial)
+    ids = [d["id"] for d in case["docs"]]
+    found = []
+    for i in _as_list(t.get("found")):
+        if i in ids and i not in found:
+            found.append(i)
+    pinned = [i for i in found if i in _as_list(t.get("pinned"))]
+    answers, hints = {}, {}
+    given_answers, given_hints = _as_dict(t.get("answers")), _as_dict(t.get("hints"))
+    for q in case["questions"]:
+        a = given_answers.get(q["id"])
+        if isinstance(a, str) and check_answer(q, a):
+            answers[q["id"]] = C.text(a, 80)
+        used = _as_int(given_hints.get(q["id"], 0), 0, len(q["hints"]))
+        if used:
+            hints[q["id"]] = used
+    return {"found": found, "pinned": pinned, "answers": answers, "hints": hints,
+            "wrong": _as_int(t.get("wrong", 0), 0, MAX_TRIAL_WRONG), "searches": _as_int(t.get("searches", 0), 0, 999)}
+
+
+def _trial_run(case, t):
+    """The trial in the shape _state() reads from a case_runs row."""
+    solved = len(t["answers"]) == len(case["questions"])
+    run = dict(t, xp=0, score=0, status="solved" if solved else ("open" if t["found"] or t["answers"] or t["hints"] else "new"))
+    if solved:
+        run["score"] = _score(run)
+    return run
+
+
+def _trial_reply(cf, t, **extra):
+    """cf = the case file (named so a `case=` reply field can ride along in extra)."""
+    out = C.ok(trial=t, state=_state(cf, _trial_run(cf, t)), xp_waiting=0, **extra)
+    if len(t["answers"]) == len(cf["questions"]):
+        out["xp_waiting"] = int(round(cf["xp"] * _score(t) / 100.0))
+    return out
+
+
+def _case_info(case):
+    return {k: case[k] for k in ("id", "num", "title", "codename", "level", "xp", "minutes", "teaser", "client", "brief", "exhibits", "sources", "module")}
+
+
+@anvil.server.callable
+def try_case(trial=None):
+    """Case file #1 for anyone (no account): the briefing and the guest's run rebuilt from their browser."""
+    case = _trial_case()
+    return _trial_reply(case, clean_trial(case, trial), case=_case_info(case), sources=CC.SOURCES)
+
+
+@anvil.server.callable
+def try_search(source, query, trial=None):
+    case = _trial_case()
+    t = clean_trial(case, trial)
+    if source not in case["sources"]:
+        return C.fail("That source isn't available in this case.")
+    query = C.text(query, 120)
+    if len(_norm(query)) < 2:
+        return C.fail("Type something to search for.")
+    if C.rate_limited("try_search", 150, 3600):
+        return C.fail("The terminal is overheating. Take a short break and try again.")
+    scored = [(matches(d, query), i, d) for i, d in enumerate(case["docs"]) if d["src"] == source]
+    hits = [d for s, _i, d in sorted([x for x in scored if x[0] > 0], key=lambda x: (-x[0], x[1]))]
+    new = [d["id"] for d in hits if d["id"] not in t["found"]]
+    t["found"] = t["found"] + new
+    t["searches"] = min(999, t["searches"] + 1)
+    return _trial_reply(case, t, results=[_doc(d, t["pinned"]) for d in hits], new=new, query=query, source=source)
+
+
+@anvil.server.callable
+def try_hint(question_id, trial=None):
+    case = _trial_case()
+    t = clean_trial(case, trial)
+    q = next((x for x in case["questions"] if x["id"] == question_id), None)
+    if q is None:
+        return C.fail("That question doesn't exist.")
+    if t["answers"].get(q["id"]):
+        return C.fail("You've already cracked that one.")
+    used = int(t["hints"].get(q["id"], 0))
+    if used >= len(q["hints"]):
+        return C.fail("No more hints for this question. Trust your instincts.")
+    if C.rate_limited("try_hint", 60, 3600):
+        return C.fail("Easy, agent. Try again in a little while.")
+    t["hints"][q["id"]] = used + 1
+    return _trial_reply(case, t, hint=q["hints"][used], hints=q["hints"][:used + 1],
+                        hints_left=len(q["hints"]) - used - 1, score=_score(t))
+
+
+@anvil.server.callable
+def try_answer(question_id, answer, trial=None):
+    case = _trial_case()
+    t = clean_trial(case, trial)
+    q = next((x for x in case["questions"] if x["id"] == question_id), None)
+    if q is None:
+        return C.fail("That question doesn't exist.")
+    answer = C.text(answer, 80)
+    if not _norm(answer):
+        return C.fail("Type your answer first.")
+    if t["answers"].get(q["id"]):
+        return _trial_reply(case, t, correct=True, already=True, solved=False, score=_score(t))
+    if C.rate_limited("try_answer", 120, 3600):
+        return C.fail("Easy, agent. Try again in a little while.")
+    if not check_answer(q, answer):
+        t["wrong"] = min(MAX_TRIAL_WRONG, t["wrong"] + 1)
+        return _trial_reply(case, t, correct=False, solved=False, score=_score(t))
+    t["answers"][q["id"]] = answer
+    return _trial_reply(case, t, correct=True, solved=len(t["answers"]) == len(case["questions"]), score=_score(t))
+
+
+@anvil.server.callable(require_user=True)
+def claim_trial(trial):
+    """Bank a guest's training run after they sign up or sign in: the answers are checked again, the counts clamped,
+    and the c1 run is written once. XP only if this account never solved c1 before."""
+    me = C.require_user()
+    case = _trial_case()
+    t = clean_trial(case, trial)
+    if not t["found"] and not t["answers"]:
+        return C.ok(saved=False)
+    r = _run(me, case)
+    if r is not None and (r["xp"] or len(r["answers"] or {}) >= len(t["answers"])):
+        return C.ok(saved=False, already=True)
+    solved = len(t["answers"]) == len(case["questions"])
+    r = r or _run(me, case, create=True)
+    before = Agents.snapshot(me)
+    r.update(found=t["found"], pinned=t["pinned"], answers=t["answers"], hints=t["hints"], wrong=t["wrong"],
+             searches=t["searches"], status="solved" if solved else "open", updated=C.now())
+    gained = 0
+    if solved:
+        score = _score(r)
+        gained = int(round(case["xp"] * score / 100.0))
+        r.update(xp=gained, score=score, finished=C.now())
+    Agents.award(me, gained)
+    out = C.ok(saved=True, solved=solved, xp_gained=gained, score=_score(r))
+    out.update(Agents.changes(me, before))
+    return out

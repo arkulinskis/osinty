@@ -37,6 +37,14 @@ class Home(HomeTemplate):
         n["streak_chip"].className = "of-chip" + (" hot" if d["streak"] >= 3 else "")
         n["streak"].textContent = state.plural(d["streak"], "day") + " on duty"
         n["lessons"].textContent = "%d/%d lessons" % (d["lessons_done"], d["lessons_total"])
+        chair = d.get("chair") or {}
+        if chair.get("done"):
+            n["chair_stamp"].textContent = "%d/%d" % (chair["score"], chair["of"])
+            n["chair_stamp"].className = "os-stamp good"
+            n["chair_text"].textContent = "Today's rulings are in (No. %d). New clients tomorrow; reread HQ's reasons any time." % chair["day"]
+        elif chair.get("day"):
+            n["chair_text"].textContent = ("Client chair No. %d: three fictional clients are waiting. Take the job, add conditions, "
+                                           "or show them the door. +10 XP." % chair["day"])
         n["cases"].textContent = "%d/%d cases closed" % (d["cases_solved"], d["cases_total"])
         place = d["board"].get("my_place")
         self.place_chip.visible = bool(place)
